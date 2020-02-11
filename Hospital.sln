@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital.DAL", "Hospital.DAL\Hospital.DAL.csproj", "{75BA2DC9-937F-4047-AB6B-98C35178DF9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hospital.DAL", "Hospital.DAL\Hospital.DAL.csproj", "{75BA2DC9-937F-4047-AB6B-98C35178DF9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital.WEB", "Hospital.WEB\Hospital.WEB.csproj", "{77CCFB63-C1B1-4AA6-BE83-C32EC778674B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hospital.WEB", "Hospital.WEB\Hospital.WEB.csproj", "{77CCFB63-C1B1-4AA6-BE83-C32EC778674B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital.Infrastructure", "Hospital.Infrastructure\Hospital.Infrastructure.csproj", "{9914322A-0F97-4BDB-8EE7-205BA776B823}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hospital.Infrastructure", "Hospital.Infrastructure\Hospital.Infrastructure.csproj", "{9914322A-0F97-4BDB-8EE7-205BA776B823}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

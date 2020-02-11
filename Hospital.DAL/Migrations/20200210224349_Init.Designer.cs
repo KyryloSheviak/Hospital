@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hospital.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200210195109_Initial")]
-    partial class Initial
+    [Migration("20200210224349_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -91,18 +91,14 @@ namespace Hospital.DAL.Migrations
 
             modelBuilder.Entity("Hospital.DAL.Entities.Doctor", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("About")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ApplicationUserId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Cost")
@@ -122,21 +118,18 @@ namespace Hospital.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("ApplicationUserId1")
+                    b.HasIndex("ApplicationUserId")
                         .IsUnique()
-                        .HasFilter("[ApplicationUserId1] IS NOT NULL");
+                        .HasFilter("[ApplicationUserId] IS NOT NULL");
 
                     b.ToTable("Doctors");
                 });
 
             modelBuilder.Entity("Hospital.DAL.Entities.Patient", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -144,16 +137,11 @@ namespace Hospital.DAL.Migrations
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ApplicationUserId1")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("ApplicationUserId1")
+                    b.HasIndex("ApplicationUserId")
                         .IsUnique()
-                        .HasFilter("[ApplicationUserId1] IS NOT NULL");
+                        .HasFilter("[ApplicationUserId] IS NOT NULL");
 
                     b.ToTable("Patients");
                 });
@@ -292,23 +280,15 @@ namespace Hospital.DAL.Migrations
             modelBuilder.Entity("Hospital.DAL.Entities.Doctor", b =>
                 {
                     b.HasOne("Hospital.DAL.Entities.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("Hospital.DAL.Entities.ApplicationUser", null)
                         .WithOne("Doctor")
-                        .HasForeignKey("Hospital.DAL.Entities.Doctor", "ApplicationUserId1");
+                        .HasForeignKey("Hospital.DAL.Entities.Doctor", "ApplicationUserId");
                 });
 
             modelBuilder.Entity("Hospital.DAL.Entities.Patient", b =>
                 {
                     b.HasOne("Hospital.DAL.Entities.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("Hospital.DAL.Entities.ApplicationUser", null)
                         .WithOne("Patient")
-                        .HasForeignKey("Hospital.DAL.Entities.Patient", "ApplicationUserId1");
+                        .HasForeignKey("Hospital.DAL.Entities.Patient", "ApplicationUserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

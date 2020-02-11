@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Hospital.DAL.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -157,16 +157,14 @@ namespace Hospital.DAL.Migrations
                 name: "Doctors",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(nullable: false),
                     Degree = table.Column<string>(nullable: true),
                     Cost = table.Column<int>(nullable: false),
                     About = table.Column<string>(nullable: true),
                     RoomNumber = table.Column<int>(nullable: false),
                     Expirience = table.Column<int>(nullable: false),
                     Specialty = table.Column<string>(nullable: true),
-                    ApplicationUserId = table.Column<string>(nullable: true),
-                    ApplicationUserId1 = table.Column<string>(nullable: true)
+                    ApplicationUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -177,23 +175,15 @@ namespace Hospital.DAL.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Doctors_AspNetUsers_ApplicationUserId1",
-                        column: x => x.ApplicationUserId1,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Patients",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(nullable: false),
                     Address = table.Column<string>(nullable: true),
-                    ApplicationUserId = table.Column<string>(nullable: true),
-                    ApplicationUserId1 = table.Column<string>(nullable: true)
+                    ApplicationUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -201,12 +191,6 @@ namespace Hospital.DAL.Migrations
                     table.ForeignKey(
                         name: "FK_Patients_AspNetUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Patients_AspNetUsers_ApplicationUserId1",
-                        column: x => x.ApplicationUserId1,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -254,26 +238,16 @@ namespace Hospital.DAL.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Doctors_ApplicationUserId",
                 table: "Doctors",
-                column: "ApplicationUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Doctors_ApplicationUserId1",
-                table: "Doctors",
-                column: "ApplicationUserId1",
+                column: "ApplicationUserId",
                 unique: true,
-                filter: "[ApplicationUserId1] IS NOT NULL");
+                filter: "[ApplicationUserId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Patients_ApplicationUserId",
                 table: "Patients",
-                column: "ApplicationUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Patients_ApplicationUserId1",
-                table: "Patients",
-                column: "ApplicationUserId1",
+                column: "ApplicationUserId",
                 unique: true,
-                filter: "[ApplicationUserId1] IS NOT NULL");
+                filter: "[ApplicationUserId] IS NOT NULL");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

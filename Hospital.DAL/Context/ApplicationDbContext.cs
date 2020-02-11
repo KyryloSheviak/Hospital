@@ -13,15 +13,15 @@ namespace Hospital.DAL.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Doctor>()
-                .HasOne(c => c.ApplicationUser)
-                .WithMany()
-                .HasForeignKey(c => c.ApplicationUserId);
+            modelBuilder.Entity<ApplicationUser>()
+                .HasOne(c => c.Doctor)
+                .WithOne(c => c.ApplicationUser)
+                .HasForeignKey<Doctor>(c => c.ApplicationUserId);
 
-            modelBuilder.Entity<Patient>()
-                .HasOne(c => c.ApplicationUser)
-                .WithMany()
-                .HasForeignKey(c => c.ApplicationUserId);
+            modelBuilder.Entity<ApplicationUser>()
+                .HasOne(c => c.Patient)
+                .WithOne(c => c.ApplicationUser)
+                .HasForeignKey<Patient>(c => c.ApplicationUserId);
 
             base.OnModelCreating(modelBuilder);
         }

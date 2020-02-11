@@ -2,11 +2,10 @@
 using Microsoft.Extensions.Configuration;
 using Hospital.DAL.Context;
 using Hospital.DAL.Extensions;
-using Hospital.DAL.Interface;
-using Hospital.DAL.UnitOfWork;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Hospital.DAL.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace Hospital.Infrastructure
 {
@@ -14,6 +13,9 @@ namespace Hospital.Infrastructure
     {
         public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddTransient(typeof(Lazy<>), typeof(Lazier<>));
 
            // services.AddTransient<IUnitOfWork, UnitOfWork>();
