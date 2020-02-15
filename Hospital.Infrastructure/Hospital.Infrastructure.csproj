@@ -5,6 +5,7 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\Hospital.BL\Hospital.BL.csproj" />
     <ProjectReference Include="..\Hospital.DAL\Hospital.DAL.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />

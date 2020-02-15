@@ -68,6 +68,7 @@ namespace Hospital.DAL.UnitOfWork
             {
                 if (disposing)
                 {
+                    _context.Dispose();
                     _userManager.Dispose();
                 }
                 this.disposed = true;

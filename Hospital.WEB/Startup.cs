@@ -1,5 +1,7 @@
+using AutoMapper;
 using Hospital.DAL.Context;
 using Hospital.Infrastructure;
+using Hospital.WEB.Mapping;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +25,18 @@ namespace Hospital.WEB
         {
             ServiceInitializer.ConfigureServices(services, Configuration);
 
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            var mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
+            //services.AddMvc(options =>
+            //{
+            //    options.Filters.Add(typeof(GlobalExceptionFilter));
+            //});
 
             services.AddControllersWithViews();
         }

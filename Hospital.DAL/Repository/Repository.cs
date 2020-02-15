@@ -18,7 +18,7 @@ namespace Hospital.DAL.Repository
             _dbSet = _context.Set<TEntity>();
         }
 
-        public IEnumerable<TEntity> Get(
+        public virtual IEnumerable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             params string[] includeProperties)
@@ -45,23 +45,23 @@ namespace Hospital.DAL.Repository
             }
         }
 
-        public TEntity Get(int id)
+        public virtual TEntity Get(int id)
         {
             return _dbSet.Find(id);
         }
 
-        public void Insert(TEntity entity)
+        public virtual void Insert(TEntity entity)
         {
             _dbSet.Add(entity);
         }
 
-        public void Delete(int id)
+        public virtual void Delete(int id)
         {
             var entityToDelete = _dbSet.Find(id);
             Delete(entityToDelete);
         }
 
-        public void Delete(TEntity entityToDelete)
+        public virtual void Delete(TEntity entityToDelete)
         {
             if (_context.Entry(entityToDelete).State == EntityState.Detached)
             {
@@ -70,7 +70,7 @@ namespace Hospital.DAL.Repository
             _dbSet.Remove(entityToDelete);
         }
 
-        public void Update(TEntity entityToUpdate)
+        public virtual void Update(TEntity entityToUpdate)
         {
             _dbSet.Attach(entityToUpdate);
             _context.Entry(entityToUpdate).State = EntityState.Modified;
