@@ -4,6 +4,6 @@ namespace Hospital.DAL.Entities
 {
     public class BaseEntities
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
     }
 }

@@ -1,5 +1,3 @@
-using System;
-
 namespace Hospital.WEB.Models
 {
     public class ErrorViewModel

@@ -15,10 +15,10 @@ namespace Hospital.DAL.UnitOfWork
         private Hashtable _repositories;
 
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly IClientManager _clientManager;
 
-        public UnitOfWork(ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public UnitOfWork(ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
         {
             _context = context;
             _userManager = userManager;

@@ -32,7 +32,7 @@ namespace Hospital.WEB.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = new ApplicationUser
+                ApplicationUser user = new ApplicationUser()
                 {
                     Email = model.Email,
                     UserName = model.Email
