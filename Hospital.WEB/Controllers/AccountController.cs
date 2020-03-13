@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Hospital.DAL.Entities;
-using Hospital.DAL.Interface;
-using Hospital.DAL.Repository;
+using Hospital.WEB.Models;
 using Hospital.WEB.ViewModels;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hospital.WEB.Controllers
 {
-    
+
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -61,6 +58,32 @@ namespace Hospital.WEB.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Login(LoginViewModel loginModel)
+        {
+            ApplicationUser user = await _userManager.FindByEmailAsync(loginModel.Email);
+            if (user == null)
+            {
+                ModelState.AddModelError("", "User doesn't found");
+            }
+            else
+            {
+                await _signInManager.SignOutAsync();
+                await _signInManager.SignInAsync(user, new AuthenticationProperties
+                {
+                    IsPersistent = true
+                });
+                return RedirectToAction("Index", "Home");
+            }
+            return View(loginModel);
         }
     }
 }

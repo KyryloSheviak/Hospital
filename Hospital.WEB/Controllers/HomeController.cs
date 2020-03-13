@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Hospital.WEB.Models;
 using Hospital.BL.Interface;
 using AutoMapper;
+using Hospital.WEB.Models;
 
 namespace Hospital.WEB.Controllers
 {
@@ -26,7 +26,7 @@ namespace Hospital.WEB.Controllers
             return View(test);
         }
 
-        public IActionResult Privacy()
+        public IActionResult Contacts()
         {
             return View();
         }

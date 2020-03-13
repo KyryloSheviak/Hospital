@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewData["Title"] = "MakeAppointment";
+}
+
+<h1>Make an appointment</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Reception">
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col">
+                        <label for="name">First name *</label>
+                        <input required type="text" class="form-control" placeholder="First name" id="name">
+                    </div>
+                    <div class="col">
+                        <label for="surname">Last name *</label>
+                        <input required type="text" class="form-control" placeholder="Last name" id="surname">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="name@example.com">
+            </div>
+            <div class="form-group">
+                <label for="Phone">Phone number *</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">+38</span>
+                    </div>
+                    <input required type="tel" class="form-control" placeholder=" (000) 000-0000" aria-label="phone" aria-describedby="basic-addon1" maxlength="10">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="mr-sm-2" for="Speciality">Select doctor's speciality *</label>
+                <select class="custom-select mr-sm-2" id="Speciality">
+                    <option selected>Not selected...</option>
+                    <option value="1">First speciality</option>
+                    <option value="2">Second speciality</option>
+                    <option value="3">Third speciality</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="mr-sm-2" for="Doctor">Select a doctor *</label>
+                <select class="custom-select mr-sm-2" id="Doctor">
+                    <option selected>Not selected...</option>
+                    <option value="1">First doctor</option>
+                    <option value="2">Second doctor</option>
+                    <option value="3">Third doctor</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <small id="passwordHelpInline" class="text-muted">
+                    * - fields marked as required
+                </small>            
+            </div>
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
