@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Hospital.WEB.Models;
-using Hospital.BL.DTO;
 using Hospital.BL.Interface;
 using AutoMapper;
+using Hospital.WEB.Models;
 
 namespace Hospital.WEB.Controllers
 {
@@ -28,10 +23,10 @@ namespace Hospital.WEB.Controllers
         public IActionResult Index()
         {
             var test = _adminService.GetUsers();
-            return View();
+            return View(test);
         }
 
-        public IActionResult Privacy()
+        public IActionResult Contacts()
         {
             return View();
         }
