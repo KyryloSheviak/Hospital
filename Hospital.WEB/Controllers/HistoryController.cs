@@ -4,7 +4,7 @@ namespace Hospital.WEB.Controllers
 {
     public class HistoryController : Controller
     {
-        public IActionResult Show()
+        public IActionResult History()
         {
             return View();
         }
