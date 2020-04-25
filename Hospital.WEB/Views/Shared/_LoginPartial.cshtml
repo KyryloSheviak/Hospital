@@ -3,41 +3,57 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav mr-auto">
+    <div class="collapse navbar-collapse">
+        @if (SignInManager.IsSignedIn(User))
+        {
+    <div class="dropdown">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Привет, @User.Identity.Name!
+            </a>
+        <ul class="dropdown-menu">
+            @*Patient*@
+            <li class="dropdown-submenu">
+                <a class="dropdown-item" asp-controller="History" asp-action="Show">История посещений</a>
+            </li>
+            @*Patient + Doctor*@
+            <li class="dropdown-submenu">
+                <a class="dropdown-item" asp-controller="Reception" asp-action="MyAppointments">Активные записи</a>
+            </li>
+            @*Doctor*@
+            <li class="dropdown-submenu">
+                <a class="dropdown-item" href="#">Рабочий график</a>
+            </li>
 
-            @if (SignInManager.IsSignedIn(User))
-            {
-                <li class="nav-item">
-                    <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Account
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" asp-controller="Reception" asp-action="MyAppointments">My appointments</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" asp-controller="History" asp-action="Show">History</a>
-                        <a class="dropdown-item" href="#">Settings</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <form class="form-inline" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                        <button type="submit" class="nav-link btn btn-link text-light">Logout</button>
-                    </form>
-                </li>
-            }
-            else
-            {
-                <li class="nav-item">
-                    <a class="nav-link text-light" asp-controller="Account" asp-action="Register">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-light" asp-controller="Account" asp-action="Login">Login</a>
-                </li>
-            }
+            @*Admin*@
+            <li class="dropdown-submenu">
+                <a class="dropdown-item" href="#">Статистика</a>
+            </li>
+
+            @*All*@
+            <li class="dropdown-submenu">
+                <a class="dropdown-item" href="#">Настройки</a>
+            </li>
+
+            <li class="dropdown-submenu">
+                <div class="dropdown-divider"></div>
+            </li>
+            <li class="dropdown-submenu">
+                <form class="form-inline" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button type="submit" class="nav-link btn btn-link dropdown-item text-dark">Выйти</button>
+                </form>
+            </li>
         </ul>
     </div>
-</nav>
+        }
+        else
+        {
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-controller="Account" asp-action="Register">Регистрация</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light" asp-controller="Account" asp-action="Login">Войти</a>
+            </li>
+        </ul>
+        }
+</div>
