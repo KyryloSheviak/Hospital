@@ -85,5 +85,10 @@ namespace Hospital.WEB.Controllers
             }
             return View(loginModel);
         }
+
+        public IActionResult Settings()
+        {
+            return View();
+        }
     }
 }

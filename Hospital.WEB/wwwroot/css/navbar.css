@@ -1,0 +1,23 @@
+﻿.navbar-brand {
+    padding: 0;
+}
+
+.navbar-header {
+    width: 50px;
+    background-color: #1e2226;
+    color: #6c7277;
+    font-family: 'Leckerli One';
+    font-style: italic;
+    padding-top: 9.25px;
+    padding-bottom: 9.25px;
+}
+
+.navbar-header:hover {
+    background-color: #262c31;
+}
+
+.navbar {
+    background-color: #6c7277;
+    height: 50px;
+    padding-left: 0;
+}
