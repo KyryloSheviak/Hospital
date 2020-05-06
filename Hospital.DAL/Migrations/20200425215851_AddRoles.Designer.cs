@@ -4,14 +4,16 @@ using Hospital.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Hospital.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200425215851_AddRoles")]
+    partial class AddRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,37 +79,32 @@ namespace Hospital.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "20aa422f-6c43-4118-8286-4f2174d97755",
-                            Name = "admin",
-                            NormalizedName = "ADMIN"
+                            ConcurrencyStamp = "ca9e5a3c-5f7c-4aaf-be5f-f5ac92f3fd7d",
+                            Name = "admin"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "13b07e28-d134-4f1c-b6f2-b504c14eef0f",
-                            Name = "user",
-                            NormalizedName = "USER"
+                            ConcurrencyStamp = "eb9c291a-2d2e-4375-bcf9-5e0e0cb8a071",
+                            Name = "user"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "dc06c2f9-e23e-4445-aaf2-c23d6da17f7b",
-                            Name = "doctor",
-                            NormalizedName = "DOCTOR"
+                            ConcurrencyStamp = "70a7a76a-1b3b-46c4-b264-def12fcae586",
+                            Name = "doctor"
                         },
                         new
                         {
                             Id = 4,
-                            ConcurrencyStamp = "062a361a-4d3b-4061-b3f0-3efb413a2ab7",
-                            Name = "patient",
-                            NormalizedName = "PATIENT"
+                            ConcurrencyStamp = "5699973a-68f7-4175-92c8-510cce3d1827",
+                            Name = "patient"
                         },
                         new
                         {
                             Id = 5,
-                            ConcurrencyStamp = "beb3ceea-1575-4b37-9ddb-b46d88d03c45",
-                            Name = "manager",
-                            NormalizedName = "MANAGER"
+                            ConcurrencyStamp = "654a3578-e494-4c95-9ab3-15435dc29dbd",
+                            Name = "manager"
                         });
                 });
 
@@ -520,7 +517,7 @@ namespace Hospital.DAL.Migrations
                     b.HasOne("Hospital.DAL.Entities.ApplicationUser", "ApplicationUser")
                         .WithOne("Doctor")
                         .HasForeignKey("Hospital.DAL.Entities.Doctor", "ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 

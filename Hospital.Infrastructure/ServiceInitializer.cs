@@ -9,6 +9,7 @@ using Hospital.DAL.Interface;
 using Hospital.DAL.UnitOfWork;
 using Hospital.BL.Interface;
 using Hospital.BL.Services;
+using Microsoft.AspNetCore.Identity;
 
 namespace Hospital.Infrastructure
 {
@@ -16,8 +17,11 @@ namespace Hospital.Infrastructure
     {
         public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddIdentity<ApplicationUser, ApplicationRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services
+                .AddIdentity<ApplicationUser, ApplicationRole>()
+                .AddRoles<ApplicationRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
 
             services.AddTransient(typeof(Lazy<>), typeof(Lazier<>));
 

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Hospital.WEB.Controllers
 {
-
+    [Route("account")]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -21,9 +21,11 @@ namespace Hospital.WEB.Controllers
             _signInManager = signInManager;
         }
 
+        [Route("register")]
         [HttpGet]
         public ActionResult Register() => View();
 
+        [Route("register")]
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
@@ -53,6 +55,7 @@ namespace Hospital.WEB.Controllers
             return View(model);
         }
 
+        [Route("logout")]
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
@@ -60,11 +63,13 @@ namespace Hospital.WEB.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [Route("login")]
         public ActionResult Login()
         {
             return View();
         }
 
+        [Route("login")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel loginModel)

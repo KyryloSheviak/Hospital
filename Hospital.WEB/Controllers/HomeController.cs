@@ -1,40 +1,37 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Hospital.BL.Interface;
 using AutoMapper;
-using Hospital.WEB.Models;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using Hospital.DAL.Entities;
 
 namespace Hospital.WEB.Controllers
 {
+    [Route("")]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private readonly IAdminService _adminService;
-        private readonly IMapper _mapper;
-
-        public HomeController(ILogger<HomeController> logger, IAdminService adminService, IMapper mapper)
+        public HomeController()
         {
-            _logger = logger;
-            _adminService = adminService;
-            _mapper = mapper;
         }
 
+        [Route("")]
+        [Route("index")]
         public IActionResult Index()
         {
-            var test = _adminService.GetUsers();
-            return View(test);
+            return View();
         }
 
+        [Route("contacts")]
         public IActionResult Contacts()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //public IActionResult Error()
+        //{
+        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        //}
     }
 }

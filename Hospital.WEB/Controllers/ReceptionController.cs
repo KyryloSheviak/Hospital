@@ -15,7 +15,7 @@ namespace Hospital.WEB.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ReceptionViewModel reception)
+        public IActionResult Create(ReceptionViewModel reception)
         {
             return View();
         }

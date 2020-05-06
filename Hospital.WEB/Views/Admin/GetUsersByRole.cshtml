@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Hospital.WEB.ViewModels.UserViewModel>
+
+@{
+    ViewData["Title"] = "Пользователи";
+}
+
+<h1>Пользователи</h1>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model)
+    {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Редактировать", "Edit", "Admin", new { /* id=item.PrimaryKey */ }) |*@
+                    @*@Html.ActionLink("Подробнее", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                    @*@Html.ActionLink("Удалить", "Delete", "Admin", new { id = item.Id })*@
+                    @using (Html.BeginForm("Delete", "Admin"))
+                    {
+                        @Html.Hidden("id", item.Id)
+                        @Html.Hidden("role", ViewData["Role"])
+                        <input type="submit"
+                               class="btn btn-default btn-xs"
+                               value="Удалить"
+                               onclick = "return confirm('Вы уверены, что хотите удалить?')"/>
+                    }
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+}
+else
+{
+    <h3>Нет юрезов этой роли!</h3>
+}

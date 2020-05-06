@@ -1,4 +1,6 @@
 ﻿using Hospital.DAL.Entities;
+using Hospital.DAL.InitializeDb;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -28,7 +30,8 @@ namespace Hospital.DAL.Context
             modelBuilder.Entity<ApplicationUser>()
                 .HasOne(c => c.Doctor)
                 .WithOne(c => c.ApplicationUser)
-                .HasForeignKey<Doctor>(c => c.ApplicationUserId);
+                .HasForeignKey<Doctor>(c => c.ApplicationUserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<ApplicationUser>() // Пользователь -> Отзывы
                 .HasMany(x => x.Reviews)
@@ -83,6 +86,8 @@ namespace Hospital.DAL.Context
                 .HasMany(c => c.Histories)
                 .WithOne(c => c.Patient)
                 .HasForeignKey(c => c.PatientId);
+
+            modelBuilder.ApplyConfiguration(new RoleInitializer());
 
             base.OnModelCreating(modelBuilder);
         }
