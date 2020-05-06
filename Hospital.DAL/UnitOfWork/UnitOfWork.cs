@@ -14,16 +14,16 @@ namespace Hospital.DAL.UnitOfWork
         private readonly ApplicationDbContext _context;
         private Hashtable _repositories;
 
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<ApplicationRole> _roleManager;
+        //private readonly UserManager<ApplicationUser> _userManager;
+        //private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IClientManager _clientManager;
 
-        public UnitOfWork(ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
+        public UnitOfWork(ApplicationDbContext context/*, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager*/)
         {
             _context = context;
-            _userManager = userManager;
-            _roleManager = roleManager;
-            _clientManager = new ClientManager(_context);
+            //_userManager = userManager;
+            //_roleManager = roleManager;
+            //_clientManager = new ClientManager(_context);
         }
 
         public IClientManager ClientManager => _clientManager;
@@ -69,7 +69,7 @@ namespace Hospital.DAL.UnitOfWork
                 if (disposing)
                 {
                     _context.Dispose();
-                    _userManager.Dispose();
+                    //_userManager.Dispose();
                 }
                 this.disposed = true;
             }
