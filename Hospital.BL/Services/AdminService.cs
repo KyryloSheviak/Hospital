@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using Hospital.DAL.Entities;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
-using System.Linq;
 
 namespace Hospital.BL.Services
 {

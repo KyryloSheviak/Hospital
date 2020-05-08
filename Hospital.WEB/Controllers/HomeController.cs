@@ -1,10 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Hospital.BL.Interface;
-using AutoMapper;
-using Microsoft.AspNetCore.Identity;
-using System.Threading.Tasks;
-using Hospital.DAL.Entities;
 
 namespace Hospital.WEB.Controllers
 {

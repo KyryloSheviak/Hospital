@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Hospital.BL.DTO
+﻿namespace Hospital.BL.DTO
 {
     public class ReceptionDTO : BaseDTO
     {

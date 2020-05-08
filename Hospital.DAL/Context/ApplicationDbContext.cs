@@ -1,6 +1,5 @@
 ﻿using Hospital.DAL.Entities;
 using Hospital.DAL.InitializeDb;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
