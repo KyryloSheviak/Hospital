@@ -9,48 +9,15 @@ namespace Hospital.WEB.Controllers
 {
     public class ReceptionController : Controller
     {
-        public IActionResult Create()
-        {
-            return View();
-        }
-
         [HttpPost]
         public IActionResult Create(ReceptionViewModel reception)
         {
             return View();
         }
 
-        public IActionResult MyAppointments()
-        {
-            List<ReceptionDTO> receptions = new List<ReceptionDTO>()
-            {
-                new ReceptionDTO
-                {
-                    Doctor = "Doctor 1",
-                    ReceptionDateTime = DateTime.Now.ToString("MM/dd/yy"),
-                    ReceptionDuration = DateTime.Now.ToString("H:mm"),
-                    ReceptionStatus = ReceptionStatus.CANCELED,
-                    RoomNumber = 229
-                },
-                new ReceptionDTO
-                {
-                    Doctor = "Doctor 2",
-                    ReceptionDateTime = DateTime.Now.ToString("MM/dd/yy"),
-                    ReceptionDuration = DateTime.Now.ToString("H:mm"),
-                    ReceptionStatus = ReceptionStatus.VISITED,
-                    RoomNumber = 030
-                },
-                new ReceptionDTO
-                {
-                    Doctor = "Doctor 3",
-                    ReceptionDateTime = DateTime.Now.ToString("MM/dd/yy"),
-                    ReceptionDuration = DateTime.Now.ToString("H:mm"),
-                    ReceptionStatus = ReceptionStatus.NOT_VISITED,
-                    RoomNumber = 111
-                }
-
-            };
-            return View(receptions);
-        }
+       public IActionResult GetAllReceptions() { return null; }
+       public IActionResult InsertReception() { return null; }
+       public IActionResult UpdateReception() { return null; }
+       public IActionResult DeleteReception() { return null; }
     }
 }

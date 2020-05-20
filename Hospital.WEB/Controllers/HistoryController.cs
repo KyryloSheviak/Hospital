@@ -9,5 +9,27 @@ namespace Hospital.WEB.Controllers
         {
             return View();
         }
+
+        // получение истории юзера
+        public  IActionResult GetUserHistory()
+        {
+            return null;
+        }
+
+
+        public IActionResult AddAnalyzesToUser()
+        {
+            return null;
+        }
+
+        public IActionResult DownloadUserHistory()
+        {
+            return null;
+        }
+
+        public IActionResult DownloadUserAnalyzes()
+        {
+            return null;
+        }
     }
 }

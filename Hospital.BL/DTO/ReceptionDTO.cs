@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Hospital.BL.DTO
+﻿namespace Hospital.BL.DTO
 {
     public class ReceptionDTO : BaseDTO
     {
@@ -16,6 +14,7 @@ namespace Hospital.BL.DTO
     {
         VISITED,
         NOT_VISITED,
-        CANCELED
+        CANCELED,
+        IN_PROCESS
     }
 }
