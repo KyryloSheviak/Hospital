@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Hospital.DAL.Entities
+﻿namespace Hospital.DAL.Entities
 {
     public class BaseEntities
     {

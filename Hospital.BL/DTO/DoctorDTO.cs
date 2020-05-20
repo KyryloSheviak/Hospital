@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Hospital.BL.DTO
+﻿namespace Hospital.BL.DTO
 {
     public class DoctorDTO
     {

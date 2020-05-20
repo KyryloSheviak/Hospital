@@ -1,10 +1,8 @@
 ﻿using System;
 using Hospital.DAL.Context;
-using Hospital.DAL.Entities;
 using Hospital.DAL.Interface;
 using Hospital.DAL.Repository;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 using System.Collections;
 
 namespace Hospital.DAL.UnitOfWork
