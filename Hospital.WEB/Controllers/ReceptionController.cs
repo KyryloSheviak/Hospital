@@ -19,7 +19,7 @@ namespace Hospital.WEB.Controllers
             return View();
         }
 
-        public IActionResult MyAppointments()
+        public IActionResult MyReceptions()
         {
             List<ReceptionDTO> receptions = new List<ReceptionDTO>()
             {
