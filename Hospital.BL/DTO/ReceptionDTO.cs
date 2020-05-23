@@ -14,6 +14,7 @@
     {
         VISITED,
         NOT_VISITED,
-        CANCELED
+        CANCELED,
+        IN_PROCESS
     }
 }

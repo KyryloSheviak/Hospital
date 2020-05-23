@@ -12,9 +12,8 @@ namespace Hospital.DAL.Context
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Analysis> Analyses { get; set; }
         public DbSet<History> Histories { get; set; }
-        public DbSet<Reception> Receptions { get; set; }
         public DbSet<ReceptionStatus> ReceptionStatuses { get; set; }
-        public DbSet<Review> Reviews { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<WorkDay> WorkDays { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
@@ -26,18 +25,29 @@ namespace Hospital.DAL.Context
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;
             }
 
-            modelBuilder.Entity<ApplicationUser>()
+            modelBuilder.Entity<ApplicationUser>() // Врач -> Пользователь
                 .HasOne(c => c.Doctor)
                 .WithOne(c => c.ApplicationUser)
                 .HasForeignKey<Doctor>(c => c.ApplicationUserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<ApplicationUser>() // Пользователь -> Отзывы
-                .HasMany(x => x.Reviews)
-                .WithOne(e => e.ApplicationUser)
-                .HasForeignKey(c => c.ApplicatioUserId);
+            modelBuilder.Entity<ApplicationUser>() // Пациент -> Пользователь
+                .HasOne(c => c.Patient)
+                .WithOne(c => c.ApplicationUser)
+                .HasForeignKey<Patient>(c => c.ApplicationUserId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<History>()
+            modelBuilder.Entity<Doctor>() // Врач -> Отзывы
+                .HasMany(x => x.Feedbacks)
+                .WithOne(e => e.Doctor)
+                .HasForeignKey(c => c.DoctorId);
+
+            modelBuilder.Entity<Patient>() // Пациент -> Отзывы
+                .HasMany(x => x.Feedbacks)
+                .WithOne(e => e.Patient)
+                .HasForeignKey(c => c.PatientId);
+
+            modelBuilder.Entity<History>() //История -> Анализы
                 .HasMany(x => x.Analyses)
                 .WithOne(x => x.History)
                 .HasForeignKey(x => x.HistoryId);
@@ -47,41 +57,22 @@ namespace Hospital.DAL.Context
                 .WithOne(c => c.Doctor)
                 .HasForeignKey(c => c.DoctorId);
 
-            modelBuilder.Entity<Doctor>() //Врач -> Прием
-                .HasMany(c => c.Receptions)
+            modelBuilder.Entity<Doctor>() //Врач -> Приемы
+                .HasMany(c => c.WorkDays)
                 .WithOne(x => x.Doctor)
                 .HasForeignKey(x => x.DoctorId);
 
-            modelBuilder.Entity<ApplicationUser>()
-                .HasOne(c => c.Patient)
-                .WithOne(c => c.ApplicationUser)
-                .HasForeignKey<Patient>(c => c.ApplicationUserId);
-
-            // Врач -> Рабочий день
-            modelBuilder.Entity<DoctorWorkDay>()
-                .HasKey(x => new { x.DoctorId, x.WorkdDayId });
-
-            modelBuilder.Entity<DoctorWorkDay>()
-                .HasOne(x => x.Doctor)
-                .WithMany(x => x.WorkDays)
-                .HasForeignKey(x => x.DoctorId);
-
-            modelBuilder.Entity<DoctorWorkDay>()
-                .HasOne(x => x.WorkDay)
-                .WithMany(x => x.Doctors)
-                .HasForeignKey(x => x.WorkdDayId);
-
-            modelBuilder.Entity<Patient>() // Пациент -> Прием
+            modelBuilder.Entity<Patient>() // Пациент -> Приемы
                 .HasMany(c => c.Receptions)
                 .WithOne(c => c.Patient)
                 .HasForeignKey(c => c.PatientId);
 
-            modelBuilder.Entity<Reception>()
+            modelBuilder.Entity<WorkDay>() // Прием -> Статус
                 .HasOne(x => x.ReceptionStatus)
                 .WithOne(x => x.Reception)
                 .HasForeignKey<ReceptionStatus>(e => e.ReceptionId);
 
-            modelBuilder.Entity<Patient>() // Врач -> История
+            modelBuilder.Entity<Patient>() // Врач -> Истории
                 .HasMany(c => c.Histories)
                 .WithOne(c => c.Patient)
                 .HasForeignKey(c => c.PatientId);

@@ -6,8 +6,17 @@
 
   <ItemGroup>
     <Compile Remove="Identity\**" />
+    <Compile Remove="Migrations\**" />
     <EmbeddedResource Remove="Identity\**" />
+    <EmbeddedResource Remove="Migrations\**" />
     <None Remove="Identity\**" />
+    <None Remove="Migrations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Migrations\20200523202058_update-db.cs" />
+    <Compile Include="Migrations\20200523202058_update-db.designer.cs" />
+    <Compile Include="Migrations\ApplicationDbContextModelSnapshot.cs" />
   </ItemGroup>
 
   <ItemGroup>

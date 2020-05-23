@@ -38,7 +38,7 @@ namespace Hospital.WEB.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    // установка куки
+                    await _userManager.AddToRoleAsync(user, "patient");
                     await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("Index", "Home");
                 }
