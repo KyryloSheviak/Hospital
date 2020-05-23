@@ -1,7 +1,32 @@
-﻿
+﻿@model Hospital.WEB.ViewModels.DoctorAddWorkDays
+
 @{
-    ViewData["Title"] = "AddWorkDays";
+    ViewData["Title"] = "Выберите рабочие дни";
 }
 
-<h1>AddWorkDays</h1>
+<h1>Выберите рабочие дни</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddWorkDays">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @for (int i = 0; i < 5; i++)
+            {
+                <div class="form-group">
+                    <label asp-for="DateOfWork" class="control-label"></label>
+                    <input asp-for="DateOfWork" class="form-control" />
+                    <span asp-validation-for="DateOfWork" class="text-danger"></span>
+                </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
