@@ -15,7 +15,7 @@ namespace Hospital.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.1")
+                .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -77,35 +77,35 @@ namespace Hospital.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "20aa422f-6c43-4118-8286-4f2174d97755",
+                            ConcurrencyStamp = "cc88e9fe-decf-4ded-a960-1fe05f24fbc4",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "13b07e28-d134-4f1c-b6f2-b504c14eef0f",
+                            ConcurrencyStamp = "83814523-e138-4d4b-8157-d0601511f10a",
                             Name = "user",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "dc06c2f9-e23e-4445-aaf2-c23d6da17f7b",
+                            ConcurrencyStamp = "7170c8c7-9c49-4328-a799-e6f94310c42d",
                             Name = "doctor",
                             NormalizedName = "DOCTOR"
                         },
                         new
                         {
                             Id = 4,
-                            ConcurrencyStamp = "062a361a-4d3b-4061-b3f0-3efb413a2ab7",
+                            ConcurrencyStamp = "36875336-7f95-49be-95c2-278a6ad52780",
                             Name = "patient",
                             NormalizedName = "PATIENT"
                         },
                         new
                         {
                             Id = 5,
-                            ConcurrencyStamp = "beb3ceea-1575-4b37-9ddb-b46d88d03c45",
+                            ConcurrencyStamp = "9ab0f130-d894-4089-b726-7fa37e7ad429",
                             Name = "manager",
                             NormalizedName = "MANAGER"
                         });
@@ -155,9 +155,6 @@ namespace Hospital.DAL.Migrations
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
 
-                    b.Property<string>("Number")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -204,19 +201,16 @@ namespace Hospital.DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("About")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("ApplicationUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Cost")
                         .HasColumnType("int");
 
                     b.Property<string>("Degree")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Expirience")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Price")
                         .HasColumnType("int");
 
                     b.Property<int>("RoomNumber")
@@ -233,19 +227,35 @@ namespace Hospital.DAL.Migrations
                     b.ToTable("Doctors");
                 });
 
-            modelBuilder.Entity("Hospital.DAL.Entities.DoctorWorkDay", b =>
+            modelBuilder.Entity("Hospital.DAL.Entities.Feedback", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<int>("DoctorId")
                         .HasColumnType("int");
 
-                    b.Property<int>("WorkdDayId")
+                    b.Property<DateTime>("FeedbackDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FeedbackMessage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsPublish")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("PatientId")
                         .HasColumnType("int");
 
-                    b.HasKey("DoctorId", "WorkdDayId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("WorkdDayId");
+                    b.HasIndex("DoctorId");
 
-                    b.ToTable("DoctorWorkDay");
+                    b.HasIndex("PatientId");
+
+                    b.ToTable("Feedbacks");
                 });
 
             modelBuilder.Entity("Hospital.DAL.Entities.History", b =>
@@ -306,40 +316,6 @@ namespace Hospital.DAL.Migrations
                     b.ToTable("Patients");
                 });
 
-            modelBuilder.Entity("Hospital.DAL.Entities.Reception", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("DoctorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PatientId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ReceptionDateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ReceptionDuration")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ReceptionStatusId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoomNumber")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DoctorId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("Receptions");
-                });
-
             modelBuilder.Entity("Hospital.DAL.Entities.ReceptionStatus", b =>
                 {
                     b.Property<int>("Id")
@@ -361,32 +337,6 @@ namespace Hospital.DAL.Migrations
                     b.ToTable("ReceptionStatuses");
                 });
 
-            modelBuilder.Entity("Hospital.DAL.Entities.Review", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ApplicatioUserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateOfReview")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsPublish")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ReviewText")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicatioUserId");
-
-                    b.ToTable("Reviews");
-                });
-
             modelBuilder.Entity("Hospital.DAL.Entities.WorkDay", b =>
                 {
                     b.Property<int>("Id")
@@ -394,13 +344,23 @@ namespace Hospital.DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("EndDateTime")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
 
-                    b.Property<DateTime>("StartDateTime")
+                    b.Property<int?>("PatientId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ReceptionStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ReceptionTime")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("PatientId");
 
                     b.ToTable("WorkDays");
                 });
@@ -524,17 +484,17 @@ namespace Hospital.DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Hospital.DAL.Entities.DoctorWorkDay", b =>
+            modelBuilder.Entity("Hospital.DAL.Entities.Feedback", b =>
                 {
                     b.HasOne("Hospital.DAL.Entities.Doctor", "Doctor")
-                        .WithMany("WorkDays")
+                        .WithMany("Feedbacks")
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Hospital.DAL.Entities.WorkDay", "WorkDay")
-                        .WithMany("Doctors")
-                        .HasForeignKey("WorkdDayId")
+                    b.HasOne("Hospital.DAL.Entities.Patient", "Patient")
+                        .WithMany("Feedbacks")
+                        .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
@@ -559,14 +519,23 @@ namespace Hospital.DAL.Migrations
                     b.HasOne("Hospital.DAL.Entities.ApplicationUser", "ApplicationUser")
                         .WithOne("Patient")
                         .HasForeignKey("Hospital.DAL.Entities.Patient", "ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Hospital.DAL.Entities.ReceptionStatus", b =>
+                {
+                    b.HasOne("Hospital.DAL.Entities.WorkDay", "Reception")
+                        .WithOne("ReceptionStatus")
+                        .HasForeignKey("Hospital.DAL.Entities.ReceptionStatus", "ReceptionId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Hospital.DAL.Entities.Reception", b =>
+            modelBuilder.Entity("Hospital.DAL.Entities.WorkDay", b =>
                 {
                     b.HasOne("Hospital.DAL.Entities.Doctor", "Doctor")
-                        .WithMany("Receptions")
+                        .WithMany("WorkDays")
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -574,26 +543,7 @@ namespace Hospital.DAL.Migrations
                     b.HasOne("Hospital.DAL.Entities.Patient", "Patient")
                         .WithMany("Receptions")
                         .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Hospital.DAL.Entities.ReceptionStatus", b =>
-                {
-                    b.HasOne("Hospital.DAL.Entities.Reception", "Reception")
-                        .WithOne("ReceptionStatus")
-                        .HasForeignKey("Hospital.DAL.Entities.ReceptionStatus", "ReceptionId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Hospital.DAL.Entities.Review", b =>
-                {
-                    b.HasOne("Hospital.DAL.Entities.ApplicationUser", "ApplicationUser")
-                        .WithMany("Reviews")
-                        .HasForeignKey("ApplicatioUserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

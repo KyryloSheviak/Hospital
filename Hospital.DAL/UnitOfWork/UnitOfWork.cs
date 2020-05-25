@@ -47,9 +47,9 @@ namespace Hospital.DAL.UnitOfWork
             return (IRepository<T>)_repositories[type];
         }
 
-        public async Task SaveAsync()
+        public void Save()
         {
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         public void Dispose()

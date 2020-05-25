@@ -1,8 +1,5 @@
-﻿using Hospital.BL.DTO;
-using Hospital.WEB.Models;
+﻿using Hospital.WEB.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 
 namespace Hospital.WEB.Controllers
 {

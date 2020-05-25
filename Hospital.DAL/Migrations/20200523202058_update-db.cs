@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Hospital.DAL.Migrations
 {
-    public partial class f2 : Migration
+    public partial class updatedb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -43,29 +43,15 @@ namespace Hospital.DAL.Migrations
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     Fio = table.Column<string>(nullable: true),
+                    Phone = table.Column<string>(nullable: true),
                     BirthDate = table.Column<DateTime>(nullable: false),
                     Sex = table.Column<string>(nullable: false),
-                    Number = table.Column<string>(nullable: true),
                     DoctorId = table.Column<int>(nullable: false),
                     PatientId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "WorkDays",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    StartDateTime = table.Column<DateTime>(nullable: false),
-                    EndDateTime = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WorkDays", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -181,11 +167,10 @@ namespace Hospital.DAL.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Degree = table.Column<string>(nullable: true),
-                    Cost = table.Column<int>(nullable: false),
-                    About = table.Column<string>(nullable: true),
+                    Specialty = table.Column<string>(nullable: true),
+                    Price = table.Column<int>(nullable: false),
                     RoomNumber = table.Column<int>(nullable: false),
                     Expirience = table.Column<int>(nullable: false),
-                    Specialty = table.Column<string>(nullable: true),
                     ApplicationUserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -196,7 +181,7 @@ namespace Hospital.DAL.Migrations
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -218,51 +203,34 @@ namespace Hospital.DAL.Migrations
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Reviews",
+                name: "Feedbacks",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IsPublish = table.Column<bool>(nullable: false),
-                    DateOfReview = table.Column<DateTime>(nullable: false),
-                    ReviewText = table.Column<string>(nullable: true),
-                    ApplicatioUserId = table.Column<int>(nullable: false)
+                    FeedbackDate = table.Column<DateTime>(nullable: false),
+                    FeedbackMessage = table.Column<string>(nullable: true),
+                    PatientId = table.Column<int>(nullable: false),
+                    DoctorId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Reviews", x => x.Id);
+                    table.PrimaryKey("PK_Feedbacks", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Reviews_AspNetUsers_ApplicatioUserId",
-                        column: x => x.ApplicatioUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DoctorWorkDay",
-                columns: table => new
-                {
-                    DoctorId = table.Column<int>(nullable: false),
-                    WorkdDayId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DoctorWorkDay", x => new { x.DoctorId, x.WorkdDayId });
-                    table.ForeignKey(
-                        name: "FK_DoctorWorkDay_Doctors_DoctorId",
+                        name: "FK_Feedbacks_Doctors_DoctorId",
                         column: x => x.DoctorId,
                         principalTable: "Doctors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_DoctorWorkDay_WorkDays_WorkdDayId",
-                        column: x => x.WorkdDayId,
-                        principalTable: "WorkDays",
+                        name: "FK_Feedbacks_Patients_PatientId",
+                        column: x => x.PatientId,
+                        principalTable: "Patients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -297,29 +265,27 @@ namespace Hospital.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Receptions",
+                name: "WorkDays",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ReceptionDateTime = table.Column<DateTime>(nullable: false),
-                    RoomNumber = table.Column<int>(nullable: false),
-                    ReceptionDuration = table.Column<DateTime>(nullable: false),
+                    ReceptionTime = table.Column<DateTime>(nullable: false),
                     DoctorId = table.Column<int>(nullable: false),
                     PatientId = table.Column<int>(nullable: false),
                     ReceptionStatusId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Receptions", x => x.Id);
+                    table.PrimaryKey("PK_WorkDays", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Receptions_Doctors_DoctorId",
+                        name: "FK_WorkDays_Doctors_DoctorId",
                         column: x => x.DoctorId,
                         principalTable: "Doctors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Receptions_Patients_PatientId",
+                        name: "FK_WorkDays_Patients_PatientId",
                         column: x => x.PatientId,
                         principalTable: "Patients",
                         principalColumn: "Id",
@@ -361,11 +327,23 @@ namespace Hospital.DAL.Migrations
                 {
                     table.PrimaryKey("PK_ReceptionStatuses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ReceptionStatuses_Receptions_ReceptionId",
+                        name: "FK_ReceptionStatuses_WorkDays_ReceptionId",
                         column: x => x.ReceptionId,
-                        principalTable: "Receptions",
+                        principalTable: "WorkDays",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { 1, "3da93a71-4d05-4e1f-a70b-b4003a001b32", "admin", "ADMIN" },
+                    { 2, "171aa4af-4fe1-4a2d-b77a-37bbadf94fef", "user", "USER" },
+                    { 3, "68cb85f0-fd6c-4871-ab0f-7e627f1bfeaa", "doctor", "DOCTOR" },
+                    { 4, "41852bd3-9ef2-42a7-81b0-0e4873fd4a43", "patient", "PATIENT" },
+                    { 5, "c58ea1dc-f046-46ed-ae75-54f2fe1145fe", "manager", "MANAGER" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -419,9 +397,14 @@ namespace Hospital.DAL.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_DoctorWorkDay_WorkdDayId",
-                table: "DoctorWorkDay",
-                column: "WorkdDayId");
+                name: "IX_Feedbacks_DoctorId",
+                table: "Feedbacks",
+                column: "DoctorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Feedbacks_PatientId",
+                table: "Feedbacks",
+                column: "PatientId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Histories_DoctorId",
@@ -440,25 +423,20 @@ namespace Hospital.DAL.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Receptions_DoctorId",
-                table: "Receptions",
-                column: "DoctorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Receptions_PatientId",
-                table: "Receptions",
-                column: "PatientId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ReceptionStatuses_ReceptionId",
                 table: "ReceptionStatuses",
                 column: "ReceptionId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reviews_ApplicatioUserId",
-                table: "Reviews",
-                column: "ApplicatioUserId");
+                name: "IX_WorkDays_DoctorId",
+                table: "WorkDays",
+                column: "DoctorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WorkDays_PatientId",
+                table: "WorkDays",
+                column: "PatientId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -482,13 +460,10 @@ namespace Hospital.DAL.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "DoctorWorkDay");
+                name: "Feedbacks");
 
             migrationBuilder.DropTable(
                 name: "ReceptionStatuses");
-
-            migrationBuilder.DropTable(
-                name: "Reviews");
 
             migrationBuilder.DropTable(
                 name: "Histories");
@@ -498,9 +473,6 @@ namespace Hospital.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "WorkDays");
-
-            migrationBuilder.DropTable(
-                name: "Receptions");
 
             migrationBuilder.DropTable(
                 name: "Doctors");

@@ -2,6 +2,9 @@
 using Hospital.BL.DTO;
 using Hospital.DAL.Entities;
 using Hospital.WEB.ViewModels;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Hospital.WEB.Mapping
 {
@@ -10,6 +13,9 @@ namespace Hospital.WEB.Mapping
         public MappingProfile()
         {
             // Add as many of these lines as you need to map your objects
+            CreateMap<ApplicationUser, AboutUserDTO>();
+            CreateMap<AboutUserDTO, AboutUserViewModel>();
+
             CreateMap<ApplicationUser, UserDTO>();
             CreateMap<UserDTO, ApplicationUser>();
 

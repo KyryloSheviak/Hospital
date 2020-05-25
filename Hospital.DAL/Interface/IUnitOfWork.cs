@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 
 namespace Hospital.DAL.Interface
 {
@@ -7,6 +6,6 @@ namespace Hospital.DAL.Interface
     {
         IClientManager ClientManager { get; }
         IRepository<T> Repository<T>() where T : class;
-        Task SaveAsync();
+        void Save();
     }
 }
