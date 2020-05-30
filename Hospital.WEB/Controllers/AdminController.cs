@@ -4,13 +4,14 @@ using AutoMapper;
 using Hospital.BL.Interface;
 using Hospital.DAL.Entities;
 using Hospital.WEB.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hospital.WEB.Controllers
 {
     [Route("admin")]
-    //[Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         private readonly RoleManager<ApplicationRole> _roleManager;
@@ -31,7 +32,10 @@ namespace Hospital.WEB.Controllers
             _roleManager = roleManager;
         }
 
-        public ActionResult Index() => View();
+        public IActionResult Index()
+        {
+            return View();
+        }
 
         [Route("create/doctor")]
         public ActionResult CreateDoctor() => View();

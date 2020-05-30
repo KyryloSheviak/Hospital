@@ -28,6 +28,7 @@ namespace Hospital.Infrastructure
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IAdminService, AdminService>();
             services.AddTransient<IDoctorService, DoctorService>();
+            services.AddTransient<IReceptionService, ReceptionService>();
 
             // services.AddTransient<IRepository<ApplicationUser>, IRepository<ApplicationUser>>();
 

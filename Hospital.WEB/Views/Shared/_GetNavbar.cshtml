@@ -1,0 +1,17 @@
+﻿@{
+    if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("patient"))
+            @Html.Partial("~/Views/Shared/Navbar/_PatienNavbar.cshtml")
+
+        if (User.IsInRole("doctor"))
+            @Html.Partial("~/Views/Shared/Navbar/_DoctorNavbar.cshtml")
+
+        if (User.IsInRole("admin"))
+            @Html.Partial("~/Views/Shared/Navbar/_AdminNavbar.cshtml")
+
+        if (User.IsInRole("manager"))
+            @Html.Partial("~/Views/Shared/Navbar/_ManagerNavbar.cshtml")
+
+    }
+}

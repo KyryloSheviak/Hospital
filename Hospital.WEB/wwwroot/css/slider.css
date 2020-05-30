@@ -1,0 +1,182 @@
+﻿/* Собственно сам слайдер */
+.slider {
+    /*max-width: 80%;*/
+    position: relative;
+    height: 500px;
+    margin-bottom: 130px;
+    margin: auto;
+}
+/* Картинка мастабируется по отношению к родительскому элементу */
+.slider .item img {
+    object-fit: cover;
+    width: 100%;
+    height: 500px;
+}
+/* Кнопки вперед и назад */
+.slider .prev, .slider .next {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+}
+.slider .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+/* При наведении на кнопки добавляем фон кнопок */
+.slider .prev:hover,
+.slider .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+/* Заголовок слайда */
+.slideText {
+    position: absolute;
+    color: #fff;
+    font-size: 35px;
+    /* Выравнивание текста по горизонтали и по вертикали*/
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    /* Тень*/
+    text-shadow: 1px 1px 1px #000, 0 0 1em #000;
+}
+/* Кружочки */
+.slider-dots {
+    text-align: center;
+}
+.slider-dots_item {
+    cursor: pointer;
+    height: 12px;
+    width: 12px;
+    margin: 0 2px;
+    background-color: #ddd;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+.active,
+.slider-dots_item:hover {
+    background-color: #aaa;
+}
+/* Анимация слайдов */
+.slider .item {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+@-webkit-keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+/* все кроме слайдера */
+.record-online {
+    font-size: 55px;
+    text-align: center;
+    margin: 5% 0;
+    color: #1EC8C8;
+}
+.capability-block {
+    padding: 50px 0 0 0;
+}
+.container-fluid {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.capability-title {
+    text-align: center;
+    font-size: 35px;
+    font-weight: 600;
+    color: #1EC8C8;
+    margin: 0 auto;
+}
+.left-content {
+    padding-bottom: 200px;
+}
+.capability-item {
+    margin: 30px 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.capability-list img {
+    margin-right: 25px;
+    width: 35px;
+    height: 35px;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+li {
+    list-style: none;
+}
+.capability-list {
+    margin-top: 50px;
+}
+.m-capab-order-2 {
+    -webkit-box-ordinal-group: 2;
+    -ms-flex-order: 1;
+    order: 1;
+}
+.m-capab-order-1 {
+    -webkit-box-ordinal-group: 3;
+    -ms-flex-order: 2;
+    order: 2;
+}
+.right-bg {
+    background: url(../img/capability-bg.png) 50% 50% no-repeat;
+    background-size: contain;
+}
+.record-btn {
+    background: #1EC8C8;
+    display: block;
+    width: 240px;
+    height: 50px;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    margin-left: 50px;
+    border-radius: 5px;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+.record-btn:hover {
+    color: #fff;
+    background: #00899C;
+    text-decoration: none;
+}
+a { text-decoration: none; }
+a:hover{ text-decoration: none; color: none;}

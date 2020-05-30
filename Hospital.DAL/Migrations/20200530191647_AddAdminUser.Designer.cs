@@ -4,14 +4,16 @@ using Hospital.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Hospital.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200530191647_AddAdminUser")]
+    partial class AddAdminUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,35 +79,35 @@ namespace Hospital.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "cbf7aa41-bf76-4558-8f24-7d9738836c39",
+                            ConcurrencyStamp = "d450a991-b508-4c54-a8b3-5644c5f60ef8",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "de594b27-930d-4a2e-bb9e-8b8dfe607de6",
+                            ConcurrencyStamp = "e32b5d00-32f7-4028-aad8-60c869bb11be",
                             Name = "user",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "bab6654c-1250-4078-830d-ac349adaf623",
+                            ConcurrencyStamp = "a3e90a2d-fcf6-44b0-9550-6f54b1cc5653",
                             Name = "doctor",
                             NormalizedName = "DOCTOR"
                         },
                         new
                         {
                             Id = 4,
-                            ConcurrencyStamp = "00b10b6a-a6e4-4784-b2c5-4e58072ce828",
+                            ConcurrencyStamp = "c3352272-cad5-4105-8de6-31fdf6c68deb",
                             Name = "patient",
                             NormalizedName = "PATIENT"
                         },
                         new
                         {
                             Id = 5,
-                            ConcurrencyStamp = "401adb89-3ced-42b9-9fc4-68176cf81fea",
+                            ConcurrencyStamp = "d5258201-926c-4f2a-ae32-6659e8f2f88a",
                             Name = "manager",
                             NormalizedName = "MANAGER"
                         });
@@ -196,22 +198,24 @@ namespace Hospital.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 2,
+                            Id = 1,
                             AccessFailedCount = 0,
                             BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConcurrencyStamp = "01f7dffa-3ed4-4c61-8131-9f5e4e54b965",
+                            ConcurrencyStamp = "495389a3-c4bc-4c28-8402-10dfb42c3c9f",
                             DoctorId = 0,
-                            Email = "adminTest@gmail.com",
+                            Email = "admin@gmail.com",
                             EmailConfirmed = false,
+                            Fio = "admin@gmail.com",
                             LockoutEnabled = false,
-                            NormalizedEmail = "ADMINTEST@GMAIL.COM",
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
+                            NormalizedUserName = "ADMIN@GMAIL.COM",
                             PasswordHash = "AQAAAAEAACcQAAAAEAju1DJkAZGmRKbPPr7g9P98dCkqAS/Rv3TsLa1sOu/rZ7O71Y7gDcpsjS2sKEKPRQ==",
                             PatientId = 0,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b20538d0-4b0c-45d5-8eed-0973ee1721d1",
+                            SecurityStamp = "b8756fdf-d34b-427d-8d92-c5fa85362d09",
                             Sex = " ",
                             TwoFactorEnabled = false,
-                            UserName = "adminTest@gmail.com"
+                            UserName = "admin@gmail.com"
                         });
                 });
 
@@ -470,7 +474,7 @@ namespace Hospital.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = 2,
+                            UserId = 1,
                             RoleId = 1
                         });
                 });

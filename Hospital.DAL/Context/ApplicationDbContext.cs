@@ -55,12 +55,14 @@ namespace Hospital.DAL.Context
             modelBuilder.Entity<Doctor>() // Врач -> История
                 .HasMany(c => c.Histories)
                 .WithOne(c => c.Doctor)
-                .HasForeignKey(c => c.DoctorId);
+                .HasForeignKey(c => c.DoctorId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Doctor>() //Врач -> Приемы
                 .HasMany(c => c.WorkDays)
                 .WithOne(x => x.Doctor)
-                .HasForeignKey(x => x.DoctorId);
+                .HasForeignKey(x => x.DoctorId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Patient>() // Пациент -> Приемы
                 .HasMany(c => c.Receptions)
@@ -78,6 +80,8 @@ namespace Hospital.DAL.Context
                 .HasForeignKey(c => c.PatientId);
 
             modelBuilder.ApplyConfiguration(new RoleInitializer());
+            modelBuilder.ApplyConfiguration(new UserInitializer());
+            modelBuilder.ApplyConfiguration(new UserRoleInitializer());
 
             base.OnModelCreating(modelBuilder);
         }

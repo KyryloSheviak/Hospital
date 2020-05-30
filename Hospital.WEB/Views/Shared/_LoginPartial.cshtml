@@ -1,39 +1,14 @@
-﻿@using Microsoft.AspNetCore.Identity
-@using Hospital.DAL.Entities
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
-
-<div class="collapse navbar-collapse">
-    @if (SignInManager.IsSignedIn(User))
+﻿<div class="collapse navbar-collapse">
+    @if (User.Identity.IsAuthenticated)
     {
         <div class="dropdown">
             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Привет, @User.Identity.Name!
             </a>
             <ul class="dropdown-menu">
-                @*Patient*@
-                <li class="dropdown-submenu">
-                    <a class="dropdown-item" asp-controller="History" asp-action="Show">История посещений</a>
-                </li>
-                @*Patient + Doctor*@
-                <li class="dropdown-submenu">
-                    <a class="dropdown-item" asp-controller="Reception" asp-action="MyAppointments">Активные записи</a>
-                </li>
-                @*Doctor*@
-                <li class="dropdown-submenu">
-                    <a class="dropdown-item" href="#">Рабочий график</a>
-                </li>
-
-                @*Admin*@
-                <li class="dropdown-submenu">
-                    <a class="dropdown-item" href="#">Статистика</a>
-                </li>
-
-                @*All*@
                 <li class="dropdown-submenu">
                     <a class="dropdown-item" asp-controller="Account" asp-action="Settings">Настройки</a>
                 </li>
-
                 <li class="dropdown-submenu">
                     <div class="dropdown-divider"></div>
                 </li>

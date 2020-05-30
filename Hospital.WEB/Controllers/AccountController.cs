@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AutoMapper;
 using Hospital.DAL.Entities;
 using Hospital.WEB.ViewModels;
 using Microsoft.AspNetCore.Authentication;
@@ -12,11 +13,14 @@ namespace Hospital.WEB.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IMapper _mapper;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager,
+            IMapper mapper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _mapper = mapper;
         }
 
         [Route("register")]
@@ -29,13 +33,11 @@ namespace Hospital.WEB.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = new ApplicationUser()
-                {
-                    Email = model.Email,
-                    UserName = model.Email
-                };
+                var user = _mapper.Map<ApplicationUser>(model);
+                user.Patient = new Patient();
                 // добавляем пользователя
-                var result = await _userManager.CreateAsync(user, model.Password);
+                var result = await _userManager.CreateAsync(user);
+
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, "patient");

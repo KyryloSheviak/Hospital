@@ -1,66 +1,91 @@
-﻿
+﻿@model Hospital.WEB.Models.ReceptionViewModel
+
 @{
-    ViewData["Title"] = "TakeAppointment";
+    ViewData["Title"] = "Записаться на прием";
 }
 
-<h1>Make an appointment</h1>
+<h1>Записаться на прием</h1>
 <hr />
+
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Reception">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <div class="form-row">
-                    <div class="col">
-                        <label for="name">First name *</label>
-                        <input required type="text" class="form-control" placeholder="First name" id="name">
-                    </div>
-                    <div class="col">
-                        <label for="surname">Last name *</label>
-                        <input required type="text" class="form-control" placeholder="Last name" id="surname">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" placeholder="name@example.com">
-            </div>
-            <div class="form-group">
-                <label for="Phone">Phone number *</label>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">+38</span>
-                    </div>
-                    <input required type="tel" class="form-control" placeholder=" (000) 000-0000" aria-label="phone" aria-describedby="basic-addon1" maxlength="10">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="mr-sm-2" for="Speciality">Select doctor's speciality *</label>
-                <select class="custom-select mr-sm-2" id="Speciality">
-                    <option selected>Not selected...</option>
-                    <option value="1">First speciality</option>
-                    <option value="2">Second speciality</option>
-                    <option value="3">Third speciality</option>
+                <label asp-for="DoctorId" class="control-label"></label>
+                <select class="custom-select" id="DoctorId" name="DoctorId">
+                    <option selected>Выберите доктора</option>
                 </select>
+                <span asp-validation-for="DoctorId" class="text-danger"></span>
             </div>
-
             <div class="form-group">
-                <label class="mr-sm-2" for="Doctor">Select a doctor *</label>
-                <select class="custom-select mr-sm-2" id="Doctor">
-                    <option selected>Not selected...</option>
-                    <option value="1">First doctor</option>
-                    <option value="2">Second doctor</option>
-                    <option value="3">Third doctor</option>
+                <label asp-for="WorkDay" class="control-label"></label>
+                <select class="custom-select" id="WorkDay" name="WorkDay">
+                    <option selected>Выберите день посещения</option>
                 </select>
+                <span asp-validation-for="WorkDay" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <small id="passwordHelpInline" class="text-muted">
-                    * - fields marked as required
-                </small>            
+                <label asp-for="Time" class="control-label"></label>
+                <select class="custom-select" id="Time" name="Time">
+                    <option selected>Выберите время посещения</option>
+                </select>
+                <span asp-validation-for="Time" class="text-danger"></span>
             </div>
-            
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <input type="submit" value="Записаться на прием" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<script type="text/javascript">
+    $(window).on('load', function () {
+        //$('#wrap_preloader').delay(500).fadeToggle(500);
+
+        $.ajax({
+            type: 'GET',
+            url: '/reception/getdoctors',
+            success: function (result) {
+                console.log(result);
+                $.each(result, function (key, val) {
+                    $('#DoctorId').append(new Option(val.fio, val.id));
+                });
+            }
+        });
+
+        $("#DoctorId").change(function () {
+            $("#WorkDay").empty();
+            $("#Time").empty();
+            $.ajax({
+                type: 'GET',
+                url: '/reception/getdoctor/workdays/' + this.value,
+                success: function (result) {
+                    console.log(result);
+                    $.each(result, function (key, val) {
+                        $('#WorkDay').append(new Option(val, val));
+                    });
+                }
+            });
+        });
+
+
+        $("#WorkDay").change(function () {
+            $("#Time").empty();
+            $.ajax({
+                type: 'GET',
+                url: '/reception/getdoctor/worktimes/' + this.value,
+                success: function (result) {
+                    console.log(result);
+                    $.each(result, function (key, val) {
+                        $('#Time').append(new Option(val, val));
+                    });
+                }
+            });
+        });
+    });
+</script>

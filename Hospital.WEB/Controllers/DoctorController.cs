@@ -3,12 +3,13 @@ using System.Security.Claims;
 using AutoMapper;
 using Hospital.BL.Interface;
 using Hospital.WEB.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hospital.WEB.Controllers
 {
     [Route("doctor")]
-    //[Authorize(Roles = "doctor")]
+    [Authorize(Roles = "doctor")]
     public class DoctorController : Controller
     {
         private readonly IDoctorService _doctorService;
