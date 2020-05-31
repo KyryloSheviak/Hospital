@@ -26,6 +26,8 @@
     <Compile Include="Migrations\20200530191647_AddAdminUser.designer.cs" />
     <Compile Include="Migrations\20200530191908_test.cs" />
     <Compile Include="Migrations\20200530191908_test.designer.cs" />
+    <Compile Include="Migrations\20200531105432_checkUpdates.cs" />
+    <Compile Include="Migrations\20200531105432_checkUpdates.designer.cs" />
     <Compile Include="Migrations\ApplicationDbContextModelSnapshot.cs" />
   </ItemGroup>
 

@@ -96,5 +96,13 @@ namespace Hospital.WEB.Controllers
         {
             return View();
         }
+
+        public IActionResult ResetPassword()
+        {
+            return NoContent();
+        }
+
+        public IActionResult UploadPhoto() => NoContent();
+        public IActionResult DeletePhoto() => NoContent();
     }
 }

@@ -48,11 +48,11 @@ namespace Hospital.WEB.Controllers
 
         [HttpGet]
         [Route("create")]
-        public IActionResult Create() => View();
+        public IActionResult InsertReception() => View();
 
         [HttpPost]
         [Route("create")]
-        public IActionResult Create(ReceptionViewModel reception)
+        public IActionResult InsertReception(ReceptionViewModel reception)
         {
             if (ModelState.IsValid)
             {
@@ -74,7 +74,6 @@ namespace Hospital.WEB.Controllers
         }
 
        public IActionResult GetAllReceptions() { return null; }
-       public IActionResult InsertReception() { return null; }
        public IActionResult UpdateReception() { return null; }
        public IActionResult DeleteReception() { return null; }
     }

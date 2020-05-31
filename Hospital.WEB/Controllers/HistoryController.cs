@@ -10,26 +10,28 @@ namespace Hospital.WEB.Controllers
             return View();
         }
 
+        public IActionResult GetAllHistories() { return NotFound(); }
+
         // получение истории юзера
         public  IActionResult GetUserHistory()
         {
-            return null;
+            return NotFound();
         }
 
 
         public IActionResult AddAnalyzesToUser()
         {
-            return null;
+            return NotFound();
         }
 
         public IActionResult DownloadUserHistory()
         {
-            return null;
+            return NotFound();
         }
 
         public IActionResult DownloadUserAnalyzes()
         {
-            return null;
+            return NotFound();
         }
     }
 }

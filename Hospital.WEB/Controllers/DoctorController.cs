@@ -61,6 +61,8 @@ namespace Hospital.WEB.Controllers
         }
 
         [Route("test3")]
-        public IActionResult GetReviews() { return null; }
+        public IActionResult GetFeedbacks() { return null; }
+
+        public IActionResult GetStatistic() { return NoContent(); }
     }
 }
