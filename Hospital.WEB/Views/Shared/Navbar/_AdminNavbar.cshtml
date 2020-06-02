@@ -1,12 +1,24 @@
-﻿<li class="nav-item">
-    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Робочие графики</a>
-</li>
-<li class="nav-item">
-    <a class="nav-link text-light" asp-area="" asp-controller="Admin" asp-action="GetUsersByRole" asp-route-role="doctor">Достора</a>
-</li>
-<li class="nav-item">
-    <a class="nav-link text-light" asp-area="" asp-controller="Admin" asp-action="GetUsersByRole" asp-route-role="manager">Менеджеры</a>
-</li>
-<li class="nav-item">
-    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Статистика</a>
-</li>
+﻿<div class="collapse navbar-collapse">
+    <div class="dropdown">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Пользователи
+        </a>
+        <ul class="dropdown-menu">
+            <li class="dropdown-submenu">
+                <a asp-action="CreateDoctor" asp-controller="Admin" class="dropdown-item">Создать достора</a>
+            </li>
+            <li class="dropdown-submenu">
+                <a asp-action="CreateManager" asp-controller="Admin" class="dropdown-item">Создать менеджера</a>
+            </li>
+            <li class="dropdown-submenu">
+                <div class="dropdown-divider"></div>
+            </li>
+            <li class="dropdown-submenu">
+                <a asp-action="GetUsersByRole" asp-controller="Admin" asp-route-role="doctor" class="dropdown-item">Список докторов</a>
+            </li>
+            <li class="dropdown-submenu">
+                <a asp-action="GetUsersByRole" asp-controller="Admin" asp-route-role="manager" class="dropdown-item">Список менеджеров</a>
+            </li>
+        </ul>
+    </div>
+</div>

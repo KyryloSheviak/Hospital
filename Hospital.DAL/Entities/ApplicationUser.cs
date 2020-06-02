@@ -6,6 +6,7 @@ namespace Hospital.DAL.Entities
 {
     public class ApplicationUser : IdentityUser<int>
     {
+        public string PhotoFileName { get; set; }
         public string Fio { get; set; }
         public DateTime BirthDate { get; set; }
         public char Sex { get; set; }

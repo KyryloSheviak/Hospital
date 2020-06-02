@@ -22,12 +22,14 @@ namespace Hospital.WEB.Mapping
             CreateMap<UserDTO, ApplicationUser>();
 
             CreateMap<UserViewModel, ApplicationUser>()
+                .ForMember(x => x.Sex, x => x.MapFrom(x => x.Sex.ToString()))
                 .ForMember(x => x.UserName, x => x.MapFrom(x => x.Email));
 
             CreateMap<UserDTO, UserViewModel>();
 
             CreateMap<DoctorViewModel, Doctor>();
             CreateMap<DoctorViewModel, ApplicationUser>()
+                .ForMember(x => x.Sex, x => x.MapFrom(x => x.UserViewModel.Sex.ToString()))
                 .ForMember(x => x.Fio, x => x.MapFrom(x => x.UserViewModel.Fio))
                 .ForMember(x => x.UserName, x => x.MapFrom(x => x.UserViewModel.Email))
                 .ForMember(x => x.Email, x => x.MapFrom(x => x.UserViewModel.Email))

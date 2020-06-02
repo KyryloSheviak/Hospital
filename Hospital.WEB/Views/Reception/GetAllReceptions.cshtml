@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Записи на прием";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Записи на прием</h1>
+        </div>
+        <div class="col"><button type="button" class="btn btn-outline-info w-100 mr-2">Создать запись</button></div>
+        <div class="col"><button type="button" class="btn btn-outline-info w-100 mr-2">Показать все записи на прием</button></div>
+    </div>
+</div>
+
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="card p-2 pt-3 pb-3 w-75 m-auto">
+            <div class="col-4 text-center">
+                <h5>Доктор:</h5>
+                <img src="~/img/avatar_male.png" alt="Avatar" style="width:100%">
+                <h4 class="pt-2">Валера Валера</h4>
+            </div>
+            <div class="col-4 text-center">
+                <h5>Пациент:</h5>
+                <img src="~/img/avatar_female.png" alt="Avatar" style="width:100%">
+                <h4 class="pt-2">Оксана Витальевна</h4>
+            </div>
+            <div class="col ptbutton">
+                <button type="button" class="btn btn-outline-info w-100 pt-2 pb-2">Редактировать</button>
+                <button type="button" class="btn btn-outline-danger w-100 pt-2 pb-2 mt-2 mb-2">Отменить прием</button>
+                <button type="button" class="btn btn-outline-warning w-100 pt-2 pb-2">Добавить анализы</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card { flex-direction: initial; }
+    .ptbutton { padding-top: 80px; }
+</style>

@@ -20,10 +20,5 @@ namespace Hospital.WEB.Controllers
         {
             return NotFound();
         }
-
-        public IActionResult GetReception()
-        {
-            return NotFound();
-        }
     }
 }

@@ -28,6 +28,10 @@
     <Compile Include="Migrations\20200530191908_test.designer.cs" />
     <Compile Include="Migrations\20200531105432_checkUpdates.cs" />
     <Compile Include="Migrations\20200531105432_checkUpdates.designer.cs" />
+    <Compile Include="Migrations\20200602140623_UpdateEntities.cs" />
+    <Compile Include="Migrations\20200602140623_UpdateEntities.Designer.cs" />
+    <Compile Include="Migrations\20200602210931_UpdateTableDoctor.cs" />
+    <Compile Include="Migrations\20200602210931_UpdateTableDoctor.Designer.cs" />
     <Compile Include="Migrations\ApplicationDbContextModelSnapshot.cs" />
   </ItemGroup>
 

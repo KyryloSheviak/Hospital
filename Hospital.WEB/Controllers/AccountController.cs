@@ -90,19 +90,5 @@ namespace Hospital.WEB.Controllers
             }
             return View(loginModel);
         }
-
-        [Route("settings")]
-        public IActionResult Settings()
-        {
-            return View();
-        }
-
-        public IActionResult ResetPassword()
-        {
-            return NoContent();
-        }
-
-        public IActionResult UploadPhoto() => NoContent();
-        public IActionResult DeletePhoto() => NoContent();
     }
 }

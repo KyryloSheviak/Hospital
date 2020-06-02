@@ -4,14 +4,16 @@ using Hospital.DAL.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Hospital.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200602210931_UpdateTableDoctor")]
+    partial class UpdateTableDoctor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,35 +79,35 @@ namespace Hospital.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "20e036b3-57ff-4972-a8c2-3688028df79d",
+                            ConcurrencyStamp = "8d65bd70-dbb9-4be3-a58d-80eb6aaddfb5",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "20b0f29e-814c-42bc-b799-cb4d81d36da4",
+                            ConcurrencyStamp = "a2687a46-1059-46ad-819c-5455685ed6e1",
                             Name = "user",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "3a9dc0fc-a678-4ad6-9d5e-f4b660d1d9e5",
+                            ConcurrencyStamp = "ea7f3058-5993-4be2-9b99-ae3409859f1d",
                             Name = "doctor",
                             NormalizedName = "DOCTOR"
                         },
                         new
                         {
                             Id = 4,
-                            ConcurrencyStamp = "019d3472-ec80-4695-b46d-e2573950ef2f",
+                            ConcurrencyStamp = "5fea1175-a576-4b4d-9580-ef64a2fc23ed",
                             Name = "patient",
                             NormalizedName = "PATIENT"
                         },
                         new
                         {
                             Id = 5,
-                            ConcurrencyStamp = "b495b661-05a2-4d48-9bae-2d6317b9f154",
+                            ConcurrencyStamp = "d419ec19-efe3-468e-961f-b9251c60132f",
                             Name = "manager",
                             NormalizedName = "MANAGER"
                         });
@@ -202,7 +204,7 @@ namespace Hospital.DAL.Migrations
                             Id = 2,
                             AccessFailedCount = 0,
                             BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConcurrencyStamp = "927de0d9-8fc6-4c98-b2d5-c80559d9dea9",
+                            ConcurrencyStamp = "0ad34c63-46cb-495d-be18-4f6e6151fb00",
                             DoctorId = 0,
                             Email = "adminTest@gmail.com",
                             EmailConfirmed = false,
@@ -211,7 +213,7 @@ namespace Hospital.DAL.Migrations
                             PasswordHash = "AQAAAAEAACcQAAAAEAju1DJkAZGmRKbPPr7g9P98dCkqAS/Rv3TsLa1sOu/rZ7O71Y7gDcpsjS2sKEKPRQ==",
                             PatientId = 0,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5b60add4-3507-46a7-b071-5a7db308bac2",
+                            SecurityStamp = "cfbd14fb-d2cc-45a0-859c-dbc0d98961ff",
                             Sex = " ",
                             TwoFactorEnabled = false,
                             UserName = "adminTest@gmail.com"
@@ -240,15 +242,10 @@ namespace Hospital.DAL.Migrations
                     b.Property<int>("RoomNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("SpecialtyId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId")
                         .IsUnique();
-
-                    b.HasIndex("SpecialtyId");
 
                     b.ToTable("Doctors");
                 });
@@ -535,12 +532,6 @@ namespace Hospital.DAL.Migrations
                         .WithOne("Doctor")
                         .HasForeignKey("Hospital.DAL.Entities.Doctor", "ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Hospital.DAL.Entities.Specialty", "Specialty")
-                        .WithMany("Doctors")
-                        .HasForeignKey("SpecialtyId")
-                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 

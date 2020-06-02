@@ -47,9 +47,6 @@ namespace Hospital.WEB.Controllers
             return View();
         }
 
-        [Route("test1")]
-        public IActionResult UpdateReception() { return null; }
-
         [Route("user/{id}")]
         [HttpGet]
         public IActionResult GetUserInfoById(int id) 
@@ -59,10 +56,5 @@ namespace Hospital.WEB.Controllers
 
             return View(userViewModel);
         }
-
-        [Route("test3")]
-        public IActionResult GetFeedbacks() { return null; }
-
-        public IActionResult GetStatistic() { return NoContent(); }
     }
 }

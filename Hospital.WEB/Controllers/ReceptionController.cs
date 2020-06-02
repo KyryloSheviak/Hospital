@@ -10,7 +10,6 @@ using System.Security.Claims;
 namespace Hospital.WEB.Controllers
 {
     [Route("reception")]
-    [Authorize(Roles = "patient")]
     public class ReceptionController : Controller
     {
         private readonly IReceptionService _receptionService;
@@ -24,6 +23,7 @@ namespace Hospital.WEB.Controllers
 
         [HttpGet]
         [Route("getdoctors")]
+        [Authorize(Roles = "patient")]
         public IActionResult GetDoctors()
         {
             var doctors = _receptionService.GetReceptionDoctors();
@@ -32,6 +32,7 @@ namespace Hospital.WEB.Controllers
 
         [HttpGet]
         [Route("getdoctor/workdays/{id}")]
+        [Authorize(Roles = "patient")]
         public IActionResult GetDoctorsWorkDaysById(int id)
         {
             var workDays = _receptionService.GetReceptionDoctorWorkDays(id);
@@ -40,6 +41,7 @@ namespace Hospital.WEB.Controllers
 
         [HttpGet]
         [Route("getdoctor/worktimes/{day}")]
+        [Authorize(Roles = "patient")]
         public IActionResult GetDoctorsWorkTimesByDay(string day)
         {
             var workTimes = _receptionService.GetReceptionDoctorWorkTimes(day);
@@ -48,10 +50,12 @@ namespace Hospital.WEB.Controllers
 
         [HttpGet]
         [Route("create")]
+        [Authorize(Roles = "patient")]
         public IActionResult InsertReception() => View();
 
         [HttpPost]
         [Route("create")]
+        [Authorize(Roles = "patient")]
         public IActionResult InsertReception(ReceptionViewModel reception)
         {
             if (ModelState.IsValid)
@@ -73,8 +77,19 @@ namespace Hospital.WEB.Controllers
             return View();
         }
 
-       public IActionResult GetAllReceptions() { return null; }
-       public IActionResult UpdateReception() { return null; }
-       public IActionResult DeleteReception() { return null; }
+        [HttpGet]
+        [Route("active")]
+        [Authorize(Roles = "patient")]
+        public IActionResult GetActiveReceptionsByUser()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [Route("all")]
+        [Authorize(Roles = "manager")]
+        public IActionResult GetAllReceptions() { return View(); }
+        public IActionResult UpdateReception() { return null; }
+        public IActionResult DeleteReception() { return null; }
     }
 }

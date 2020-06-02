@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewData["Title"] = "Активные записи";
+}
+
+<h1>Активные записи</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="card w-100 p-2 pt-3 pb-3">
+            <div class="col-4 text-center">
+                <img src="~/img/avatar_male.png" alt="Avatar" style="width:100%">
+                <h4 class="pt-2">Валера Валера</h4>
+            </div>
+            <div class="col-8">
+                <div class="row tbdiv col">
+                    <table>
+                        <tr>
+                            <th>Дата приема:</th>
+                            <td>14/06/2020</td>
+                        </tr>
+                        <tr>
+                            <th>Цена приема:</th>
+                            <td>150 грн</td>
+                        </tr>
+                        <tr>
+                            <th>№ кабинета:</th>
+                            <td>201</td>
+                        </tr>
+                        <tr>
+                            <th>Вопрос:</th>
+                            <td>Зуд на руках</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col d-flex">
+                        <button type="button" class="btn btn-outline-info w-100 mr-2">Профиль доктора</button>
+                        <button type="button" class="btn btn-outline-danger w-100 ml-2">Отменить прием</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card { flex-direction: initial; }
+    table { width: 80%; }
+    .tbdiv { height: 83%; }
+</style>

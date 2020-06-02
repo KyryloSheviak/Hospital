@@ -6,13 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Hospital.WEB.Controllers
 {
-    public class ManagerController : Controller
+    public class StatisticController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Settings() => NoContent();
+        public IActionResult GetStatisticForDoctor() { return null; }
+        public IActionResult GetStatisticForAdmin() { return null; }
     }
 }

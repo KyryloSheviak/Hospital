@@ -32,11 +32,6 @@ namespace Hospital.WEB.Controllers
             _roleManager = roleManager;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [Route("create/doctor")]
         public ActionResult CreateDoctor() => View();
 
@@ -52,7 +47,7 @@ namespace Hospital.WEB.Controllers
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, "doctor");
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -81,7 +76,7 @@ namespace Hospital.WEB.Controllers
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(manager, "manager");
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -124,20 +119,11 @@ namespace Hospital.WEB.Controllers
             return NotFound();
         }
 
+        /*
         public IActionResult UpdateUser() { return NoContent(); }
         public IActionResult CloseActiveSessions() { return NoContent(); }
-        public IActionResult ResetPassword() { return NoContent(); }
-
-        public IActionResult UpdatePhoto() { return NoContent(); }
-        public IActionResult DeletePhoto() { return NoContent(); }
-
-        public IActionResult GetUserById() { return NoContent(); }
-        public IActionResult GetUserByEmail() { return NoContent(); }
-        public IActionResult GetUserByFIO() { return NoContent(); }
-        public IActionResult GetUserByBirthDay() { return NoContent(); }
-        public IActionResult GetUserByPhone() { return NoContent(); }
-        public IActionResult GetStatistic() { return NoContent(); }
-
+        public IActionResult GetUserByField() { return NoContent(); }
+        */
 
         private async Task<IEnumerable<UserViewModel>> GetUsersViewModel(string role)
         {

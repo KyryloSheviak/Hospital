@@ -7,68 +7,87 @@
 <h1>Добавить доктора</h1>
 
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="CreateDoctor">
+
+<form asp-action="CreateDoctor">
+    <div class="container">
+        <div class="row">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="UserViewModel.Fio" class="control-label"></label>
-                <input asp-for="UserViewModel.Fio" class="form-control" />
-                <span asp-validation-for="UserViewModel.Fio" class="text-danger"></span>
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="UserViewModel.Email" class="control-label"></label>
+                    <input asp-for="UserViewModel.Email" class="form-control" />
+                    <span asp-validation-for="UserViewModel.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UserViewModel.Password" class="control-label"></label>
+                    <input asp-for="UserViewModel.Password" class="form-control" />
+                    <span asp-validation-for="UserViewModel.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UserViewModel.ConfirmPassword" class="control-label"></label>
+                    <input asp-for="UserViewModel.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="UserViewModel.ConfirmPassword" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="RoomNumber" class="control-label"></label>
+                    <input asp-for="RoomNumber" class="form-control" />
+                    <span asp-validation-for="RoomNumber" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="UserViewModel.Email" class="control-label"></label>
-                <input asp-for="UserViewModel.Email" class="form-control" />
-                <span asp-validation-for="UserViewModel.Email" class="text-danger"></span>
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="UserViewModel.Fio" class="control-label"></label>
+                    <input asp-for="UserViewModel.Fio" class="form-control" />
+                    <span asp-validation-for="UserViewModel.Fio" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UserViewModel.PhoneNumber" class="control-label"></label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">+38</span>
+                        </div>
+                        <input asp-for="UserViewModel.PhoneNumber" class="form-control" aria-describedby="basic-addon1" maxlength="10" placeholder=" (000) 000-0000" aria-label="phone" />
+                    </div>
+                    <span asp-validation-for="UserViewModel.PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UserViewModel.Sex" class="control-label"></label>
+                    <select asp-for="UserViewModel.Sex" class="form-control" asp-items="Html.GetEnumSelectList<Hospital.WEB.ViewModels.Sex>()"></select>
+                    <span asp-validation-for="UserViewModel.Sex" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Cost" class="control-label"></label>
+                    <input asp-for="Cost" class="form-control" />
+                    <span asp-validation-for="Cost" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="UserViewModel.Password" class="control-label"></label>
-                <input asp-for="UserViewModel.Password" class="form-control" />
-                <span asp-validation-for="UserViewModel.Password" class="text-danger"></span>
+            <div class="col">
+                <div class="form-group">
+                    <label asp-for="Expirience" class="control-label"></label>
+                    <input asp-for="Expirience" class="form-control" />
+                    <span asp-validation-for="Expirience" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Degree" class="control-label"></label>
+                    <input asp-for="Degree" class="form-control" />
+                    <span asp-validation-for="Degree" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Specialty" class="control-label"></label>
+                    <input asp-for="Specialty" class="form-control" />
+                    <span asp-validation-for="Specialty" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="About" class="control-label"></label>
+                    <input asp-for="About" class="form-control" />
+                    <span asp-validation-for="About" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="UserViewModel.ConfirmPassword" class="control-label"></label>
-                <input asp-for="UserViewModel.ConfirmPassword" class="form-control" />
-                <span asp-validation-for="UserViewModel.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Degree" class="control-label"></label>
-                <input asp-for="Degree" class="form-control" />
-                <span asp-validation-for="Degree" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cost" class="control-label"></label>
-                <input asp-for="Cost" class="form-control" />
-                <span asp-validation-for="Cost" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="About" class="control-label"></label>
-                <input asp-for="About" class="form-control" />
-                <span asp-validation-for="About" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RoomNumber" class="control-label"></label>
-                <input asp-for="RoomNumber" class="form-control" />
-                <span asp-validation-for="RoomNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Expirience" class="control-label"></label>
-                <input asp-for="Expirience" class="form-control" />
-                <span asp-validation-for="Expirience" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Specialty" class="control-label"></label>
-                <input asp-for="Specialty" class="form-control" />
-                <span asp-validation-for="Specialty" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+        <div class="w-100"></div>
+        <div class="col form-group text-right">
+            <a asp-action="Index" class="pr-3">К панели администратора</a>
+            <input type="submit" value="Добавить доктора" class="btn btn-primary" />
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+</form>

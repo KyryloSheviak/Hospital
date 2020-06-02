@@ -12,6 +12,7 @@ namespace Hospital.DAL.Context
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Analysis> Analyses { get; set; }
         public DbSet<History> Histories { get; set; }
+        public DbSet<Specialty> Specialties { get; set; }
         public DbSet<ReceptionStatus> ReceptionStatuses { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<WorkDay> WorkDays { get; set; }
@@ -36,6 +37,11 @@ namespace Hospital.DAL.Context
                 .WithOne(c => c.ApplicationUser)
                 .HasForeignKey<Patient>(c => c.ApplicationUserId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Specialty>() // Специальность -> Врачи
+                .HasMany(x => x.Doctors)
+                .WithOne(e => e.Specialty)
+                .HasForeignKey(c => c.SpecialtyId);
 
             modelBuilder.Entity<Doctor>() // Врач -> Отзывы
                 .HasMany(x => x.Feedbacks)
