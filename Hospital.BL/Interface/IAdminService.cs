@@ -10,5 +10,6 @@ namespace Hospital.BL.Interface
         IEnumerable<UserDTO> GetUsers();
         Task<IEnumerable<UserDTO>> GetUsersByRole(string role);
         Task<IdentityResult> DeleteUserById(int id);
+        IEnumerable<SpecialtyDTO> GetSpecialties();
     }
 }

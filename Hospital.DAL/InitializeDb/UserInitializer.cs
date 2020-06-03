@@ -11,15 +11,14 @@ namespace Hospital.DAL.InitializeDb
         {
             // ivd-nE7-8uc-Mzk
             builder.HasData(new ApplicationUser
-                {
-                    Id = 2, 
-                    UserName = "adminTest@gmail.com", 
-                    Email = "adminTest@gmail.com",
-                    NormalizedEmail = "ADMINTEST@GMAIL.COM",
-                    SecurityStamp = Guid.NewGuid().ToString(),
-                    PasswordHash = "AQAAAAEAACcQAAAAEAju1DJkAZGmRKbPPr7g9P98dCkqAS/Rv3TsLa1sOu/rZ7O71Y7gDcpsjS2sKEKPRQ=="
-                }
-            );
+            {
+                Id = 1, 
+                UserName = "admin@gmail.com", 
+                Email = "admin@gmail.com",
+                NormalizedEmail = "ADMIN@GMAIL.COM",
+                SecurityStamp = Guid.NewGuid().ToString(),
+                PasswordHash = "AQAAAAEAACcQAAAAEAju1DJkAZGmRKbPPr7g9P98dCkqAS/Rv3TsLa1sOu/rZ7O71Y7gDcpsjS2sKEKPRQ=="
+            });
         }
     }
 }

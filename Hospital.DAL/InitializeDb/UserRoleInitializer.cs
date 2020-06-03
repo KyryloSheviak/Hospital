@@ -8,7 +8,7 @@ namespace Hospital.DAL.InitializeDb
     {
         public void Configure(EntityTypeBuilder<IdentityUserRole<int>> builder)
         {
-            builder.HasData(new IdentityUserRole<int> { RoleId = 1, UserId = 2 });
+            builder.HasData(new IdentityUserRole<int> { RoleId = 1, UserId = 1 });
         }
     }
 }

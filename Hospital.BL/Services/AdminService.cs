@@ -43,5 +43,13 @@ namespace Hospital.BL.Services
 
             return result;
         }
+
+        public IEnumerable<SpecialtyDTO> GetSpecialties()
+        {
+            var speciality = _unitOfWork.Repository<Specialty>().Get();
+            var specialityDto = _mapper.Map<IEnumerable<SpecialtyDTO>>(speciality);
+
+            return specialityDto;
+        }
     }
 }

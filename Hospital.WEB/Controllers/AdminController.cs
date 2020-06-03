@@ -7,6 +7,7 @@ using Hospital.WEB.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Hospital.WEB.Controllers
 {
@@ -33,7 +34,15 @@ namespace Hospital.WEB.Controllers
         }
 
         [Route("create/doctor")]
-        public ActionResult CreateDoctor() => View();
+        public ActionResult CreateDoctor()
+        {
+            var doctor = new DoctorViewModel
+            {
+                Specialty = new SelectList(_adminService.GetSpecialties(), "Id", "Name")
+            };
+
+            return View(doctor);
+        }
 
         [HttpPost]
         [Route("create/doctor")]
@@ -56,8 +65,10 @@ namespace Hospital.WEB.Controllers
                         ModelState.AddModelError(string.Empty, error.Description);
                     }
                 }
-            } 
-            
+            }
+
+            doctorViewModel.Specialty = new SelectList(_adminService.GetSpecialties(), "Id", "Name");
+
             return View("CreateDoctor", doctorViewModel);
         }
 
@@ -119,10 +130,12 @@ namespace Hospital.WEB.Controllers
             return NotFound();
         }
 
+        [Route("search")]
+        public IActionResult GetUserByField() { return View(); }
+
         /*
         public IActionResult UpdateUser() { return NoContent(); }
         public IActionResult CloseActiveSessions() { return NoContent(); }
-        public IActionResult GetUserByField() { return NoContent(); }
         */
 
         private async Task<IEnumerable<UserViewModel>> GetUsersViewModel(string role)

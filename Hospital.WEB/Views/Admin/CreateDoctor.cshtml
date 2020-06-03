@@ -52,13 +52,15 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="UserViewModel.Sex" class="control-label"></label>
-                    <select asp-for="UserViewModel.Sex" class="form-control" asp-items="Html.GetEnumSelectList<Hospital.WEB.ViewModels.Sex>()"></select>
+                    <select asp-for="UserViewModel.Sex" class="form-control" asp-items="Html.GetEnumSelectList<Hospital.WEB.ViewModels.Sex>()">
+                        <option selected="selected" disabled="disabled">Выберите пол</option>
+                    </select>
                     <span asp-validation-for="UserViewModel.Sex" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Cost" class="control-label"></label>
-                    <input asp-for="Cost" class="form-control" />
-                    <span asp-validation-for="Cost" class="text-danger"></span>
+                    <label asp-for="UserViewModel.BirthDate" class="control-label"></label>
+                    <input asp-for="UserViewModel.BirthDate" class="form-control" />
+                    <span asp-validation-for="UserViewModel.BirthDate" class="text-danger"></span>
                 </div>
             </div>
             <div class="col">
@@ -74,8 +76,15 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Specialty" class="control-label"></label>
-                    <input asp-for="Specialty" class="form-control" />
-                    <span asp-validation-for="Specialty" class="text-danger"></span>
+                    <select asp-items="Model.Specialty" asp-for="SpecialtyId" class="dropdown-toggle form-control">
+                        <option selected="selected" disabled="disabled">Выберите специальность</option>
+                    </select>
+                    <span asp-validation-for="SpecialtyId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Cost" class="control-label"></label>
+                    <input asp-for="Cost" class="form-control" />
+                    <span asp-validation-for="Cost" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="About" class="control-label"></label>

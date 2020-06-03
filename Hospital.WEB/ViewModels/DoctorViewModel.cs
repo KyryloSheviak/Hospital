@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Hospital.WEB.ViewModels
@@ -20,17 +22,22 @@ namespace Hospital.WEB.ViewModels
         [DisplayName("О себе")]
         public string About { get; set; }
 
+        [Range(1, 220, ErrorMessage = "Номер кабинета должен быть больше 0")]
         [DisplayName("Номер кабинета *")]
         [Required(ErrorMessage = "Вы не указали номер телефона")]
         public int RoomNumber { get; set; }
 
-        [Range(0, 60)]
-        [DisplayName("Опыт работы *")]
+        [Range(1, 60, ErrorMessage = "Опыт работы должен быть больше 1 года")]
+        [DisplayName("Опыт работы (года)*")]
         [Required(ErrorMessage = "Вы не указали опыт работы")]
         public int Expirience { get; set; }
 
         [DisplayName("Специальность *")]
         [Required(ErrorMessage = "Вы не указали специальность")]
-        public string Specialty { get; set; }
+        public SelectList Specialty { get; set; }
+
+        [DisplayName("Специальность *")]
+        [Required(ErrorMessage = "Вы не указали специальность")]
+        public int SpecialtyId { get; set; }
     }
 }

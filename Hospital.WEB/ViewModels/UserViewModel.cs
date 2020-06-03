@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Hospital.WEB.ViewModels
@@ -16,13 +17,13 @@ namespace Hospital.WEB.ViewModels
         [Required(ErrorMessage = "Вы не указали Email")]
         public string Email { get; set; }
 
-        [StringLength(255, ErrorMessage = "Must be between 5 and 255 characters", MinimumLength = 5)]
+        [StringLength(255, ErrorMessage = "Пароль должен быть не менее 5 символов", MinimumLength = 5)]
         [DisplayName("Пароль *")]
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Поле пароль обязательное!")]
         public string Password { get; set; }
 
-        [StringLength(255, ErrorMessage = "Must be between 5 and 255 characters", MinimumLength = 5)]
+        [StringLength(255, ErrorMessage = "Пароль должен быть не менее 5 символов", MinimumLength = 5)]
         [DisplayName("Повторите пароль *")]
         [Compare("Password")]
         [DataType(DataType.Password)]
@@ -37,5 +38,11 @@ namespace Hospital.WEB.ViewModels
         [Display(Name = "Пол")]
         [Required(ErrorMessage = "Не указан пол")]
         public Sex Sex { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
+        [Display(Name = "Дата рождения")]
+        [Required(ErrorMessage = "Не указана дата рождения")]
+        public DateTime BirthDate { get; set; }
     }
 }

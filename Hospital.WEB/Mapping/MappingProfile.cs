@@ -29,6 +29,7 @@ namespace Hospital.WEB.Mapping
 
             CreateMap<DoctorViewModel, Doctor>();
             CreateMap<DoctorViewModel, ApplicationUser>()
+                .ForMember(x => x.BirthDate, x => x.MapFrom(x => x.UserViewModel.BirthDate))
                 .ForMember(x => x.Sex, x => x.MapFrom(x => x.UserViewModel.Sex.ToString()))
                 .ForMember(x => x.Fio, x => x.MapFrom(x => x.UserViewModel.Fio))
                 .ForMember(x => x.UserName, x => x.MapFrom(x => x.UserViewModel.Email))
@@ -50,7 +51,7 @@ namespace Hospital.WEB.Mapping
                .ForMember(x => x.ReceptionTime, x => x.MapFrom(x => new DateTime(x.WorkDay.Year, x.WorkDay.Month, x.WorkDay.Day, x.Time.Hour, x.Time.Minute, x.Time.Second)));
             //CreateMap<WorkDay, DateTime>()
             //    .ConvertUsing(x => x.ReceptionTime);
-
+            CreateMap<Specialty, SpecialtyDTO>();
 
         }
     }

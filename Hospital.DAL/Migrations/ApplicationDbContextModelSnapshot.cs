@@ -77,35 +77,35 @@ namespace Hospital.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "20e036b3-57ff-4972-a8c2-3688028df79d",
+                            ConcurrencyStamp = "26321a11-8f65-4628-82d5-472dd38b46da",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "20b0f29e-814c-42bc-b799-cb4d81d36da4",
+                            ConcurrencyStamp = "3667035f-a5ae-4fe4-a583-2969017e8a63",
                             Name = "user",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "3a9dc0fc-a678-4ad6-9d5e-f4b660d1d9e5",
+                            ConcurrencyStamp = "4b6550ac-92f7-42bd-982c-906d92fbc2d5",
                             Name = "doctor",
                             NormalizedName = "DOCTOR"
                         },
                         new
                         {
                             Id = 4,
-                            ConcurrencyStamp = "019d3472-ec80-4695-b46d-e2573950ef2f",
+                            ConcurrencyStamp = "49832b4f-14e3-498f-ae51-0e2e6d9a7667",
                             Name = "patient",
                             NormalizedName = "PATIENT"
                         },
                         new
                         {
                             Id = 5,
-                            ConcurrencyStamp = "b495b661-05a2-4d48-9bae-2d6317b9f154",
+                            ConcurrencyStamp = "0bac50fb-e21b-4422-988e-fff99c07952c",
                             Name = "manager",
                             NormalizedName = "MANAGER"
                         });
@@ -199,22 +199,22 @@ namespace Hospital.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 2,
+                            Id = 1,
                             AccessFailedCount = 0,
                             BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConcurrencyStamp = "927de0d9-8fc6-4c98-b2d5-c80559d9dea9",
+                            ConcurrencyStamp = "62598404-a9c9-4d82-9eaf-e4f96d9a32e1",
                             DoctorId = 0,
-                            Email = "adminTest@gmail.com",
+                            Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            NormalizedEmail = "ADMINTEST@GMAIL.COM",
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
                             PasswordHash = "AQAAAAEAACcQAAAAEAju1DJkAZGmRKbPPr7g9P98dCkqAS/Rv3TsLa1sOu/rZ7O71Y7gDcpsjS2sKEKPRQ==",
                             PatientId = 0,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5b60add4-3507-46a7-b071-5a7db308bac2",
+                            SecurityStamp = "9928234f-4da3-48ec-9ddf-fed467bc850b",
                             Sex = " ",
                             TwoFactorEnabled = false,
-                            UserName = "adminTest@gmail.com"
+                            UserName = "admin@gmail.com"
                         });
                 });
 
@@ -496,7 +496,7 @@ namespace Hospital.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = 2,
+                            UserId = 1,
                             RoleId = 1
                         });
                 });

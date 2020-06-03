@@ -6,33 +6,8 @@
 
   <ItemGroup>
     <Compile Remove="Identity\**" />
-    <Compile Remove="Migrations\**" />
     <EmbeddedResource Remove="Identity\**" />
-    <EmbeddedResource Remove="Migrations\**" />
     <None Remove="Identity\**" />
-    <None Remove="Migrations\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Migrations\20200523202058_update-db.cs" />
-    <Compile Include="Migrations\20200523202058_update-db.designer.cs" />
-    <Compile Include="Migrations\20200523212240_deletePhone.cs" />
-    <Compile Include="Migrations\20200523212240_deletePhone.designer.cs" />
-    <Compile Include="Migrations\20200523215954_ChangeWorDay.cs" />
-    <Compile Include="Migrations\20200523215954_ChangeWorDay.designer.cs" />
-    <Compile Include="Migrations\20200530000255_UpdateDoctorScheme.cs" />
-    <Compile Include="Migrations\20200530000255_UpdateDoctorScheme.designer.cs" />
-    <Compile Include="Migrations\20200530191647_AddAdminUser.cs" />
-    <Compile Include="Migrations\20200530191647_AddAdminUser.designer.cs" />
-    <Compile Include="Migrations\20200530191908_test.cs" />
-    <Compile Include="Migrations\20200530191908_test.designer.cs" />
-    <Compile Include="Migrations\20200531105432_checkUpdates.cs" />
-    <Compile Include="Migrations\20200531105432_checkUpdates.designer.cs" />
-    <Compile Include="Migrations\20200602140623_UpdateEntities.cs" />
-    <Compile Include="Migrations\20200602140623_UpdateEntities.Designer.cs" />
-    <Compile Include="Migrations\20200602210931_UpdateTableDoctor.cs" />
-    <Compile Include="Migrations\20200602210931_UpdateTableDoctor.Designer.cs" />
-    <Compile Include="Migrations\ApplicationDbContextModelSnapshot.cs" />
   </ItemGroup>
 
   <ItemGroup>

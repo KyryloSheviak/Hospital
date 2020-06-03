@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hospital.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200530191908_test")]
-    partial class test
+    [Migration("20200603101459_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -79,35 +79,35 @@ namespace Hospital.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "cbf7aa41-bf76-4558-8f24-7d9738836c39",
+                            ConcurrencyStamp = "26321a11-8f65-4628-82d5-472dd38b46da",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "de594b27-930d-4a2e-bb9e-8b8dfe607de6",
+                            ConcurrencyStamp = "3667035f-a5ae-4fe4-a583-2969017e8a63",
                             Name = "user",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "bab6654c-1250-4078-830d-ac349adaf623",
+                            ConcurrencyStamp = "4b6550ac-92f7-42bd-982c-906d92fbc2d5",
                             Name = "doctor",
                             NormalizedName = "DOCTOR"
                         },
                         new
                         {
                             Id = 4,
-                            ConcurrencyStamp = "00b10b6a-a6e4-4784-b2c5-4e58072ce828",
+                            ConcurrencyStamp = "49832b4f-14e3-498f-ae51-0e2e6d9a7667",
                             Name = "patient",
                             NormalizedName = "PATIENT"
                         },
                         new
                         {
                             Id = 5,
-                            ConcurrencyStamp = "401adb89-3ced-42b9-9fc4-68176cf81fea",
+                            ConcurrencyStamp = "0bac50fb-e21b-4422-988e-fff99c07952c",
                             Name = "manager",
                             NormalizedName = "MANAGER"
                         });
@@ -169,6 +169,9 @@ namespace Hospital.DAL.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("PhotoFileName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -198,22 +201,22 @@ namespace Hospital.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 2,
+                            Id = 1,
                             AccessFailedCount = 0,
                             BirthDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ConcurrencyStamp = "01f7dffa-3ed4-4c61-8131-9f5e4e54b965",
+                            ConcurrencyStamp = "62598404-a9c9-4d82-9eaf-e4f96d9a32e1",
                             DoctorId = 0,
-                            Email = "adminTest@gmail.com",
+                            Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            NormalizedEmail = "ADMINTEST@GMAIL.COM",
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
                             PasswordHash = "AQAAAAEAACcQAAAAEAju1DJkAZGmRKbPPr7g9P98dCkqAS/Rv3TsLa1sOu/rZ7O71Y7gDcpsjS2sKEKPRQ==",
                             PatientId = 0,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b20538d0-4b0c-45d5-8eed-0973ee1721d1",
+                            SecurityStamp = "9928234f-4da3-48ec-9ddf-fed467bc850b",
                             Sex = " ",
                             TwoFactorEnabled = false,
-                            UserName = "adminTest@gmail.com"
+                            UserName = "admin@gmail.com"
                         });
                 });
 
@@ -239,13 +242,15 @@ namespace Hospital.DAL.Migrations
                     b.Property<int>("RoomNumber")
                         .HasColumnType("int");
 
-                    b.Property<string>("Specialty")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("SpecialtyId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId")
                         .IsUnique();
+
+                    b.HasIndex("SpecialtyId");
 
                     b.ToTable("Doctors");
                 });
@@ -360,12 +365,33 @@ namespace Hospital.DAL.Migrations
                     b.ToTable("ReceptionStatuses");
                 });
 
+            modelBuilder.Entity("Hospital.DAL.Entities.Specialty", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Specialties");
+                });
+
             modelBuilder.Entity("Hospital.DAL.Entities.WorkDay", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Details")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("DoctorId")
                         .HasColumnType("int");
@@ -472,7 +498,7 @@ namespace Hospital.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = 2,
+                            UserId = 1,
                             RoleId = 1
                         });
                 });
@@ -511,6 +537,12 @@ namespace Hospital.DAL.Migrations
                         .WithOne("Doctor")
                         .HasForeignKey("Hospital.DAL.Entities.Doctor", "ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Hospital.DAL.Entities.Specialty", "Specialty")
+                        .WithMany("Doctors")
+                        .HasForeignKey("SpecialtyId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
