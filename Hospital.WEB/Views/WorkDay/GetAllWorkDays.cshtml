@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Рабочие графики";
+}
+
+<h1>Рабочие графики</h1>
+
+<form>
+    <div class="card w-100 p-3">
+        <h5>Поиск рабочего графика</h5>
+        <div class="row">
+            <div id="fields" class="col-4 p-0 d-flex">
+                <p><input name="dzen" type="radio" value="pdzen">  ФИО</p>
+                <p><input name="dzen" type="radio" value="nedzen"> Телеофн</p>
+                <p><input name="dzen" type="radio" value="nedzen"> Email</p>
+                <p><input name="dzen" type="radio" value="dzen"> Специальность</p>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" />
+            </div>
+            <div class="col">
+                <input type="submit" value="Показать все рабочие графики" class="btn btn-primary w-100" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<style>
+    #fields > p { margin-left: 10px; }
+</style>

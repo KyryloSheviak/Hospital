@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Hospital.WEB.Controllers
 {
     [Route("admin")]
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         private readonly RoleManager<ApplicationRole> _roleManager;
@@ -133,11 +133,11 @@ namespace Hospital.WEB.Controllers
         [Route("search")]
         public IActionResult GetUserByField() { return View(); }
 
-        /*
+        [Route("test1")]
         public IActionResult UpdateUser() { return NoContent(); }
+        [Route("test2")]
         public IActionResult CloseActiveSessions() { return NoContent(); }
-        */
-
+        
         private async Task<IEnumerable<UserViewModel>> GetUsersViewModel(string role)
         {
             var usersDto = await _adminService.GetUsersByRole(role);

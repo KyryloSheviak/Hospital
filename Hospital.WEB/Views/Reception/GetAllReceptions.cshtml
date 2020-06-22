@@ -20,16 +20,28 @@
             <div class="col-4 text-center">
                 <h5>Доктор:</h5>
                 <img src="~/img/avatar_male.png" alt="Avatar" style="width:100%">
-                <h4 class="pt-2">Валера Валера</h4>
+                <h4 class="pt-2">Валерий Анатольевич Кандратьев</h4>
             </div>
             <div class="col-4 text-center">
                 <h5>Пациент:</h5>
                 <img src="~/img/avatar_female.png" alt="Avatar" style="width:100%">
-                <h4 class="pt-2">Оксана Витальевна</h4>
+                <h4 class="pt-2">Валерий Валерьевич Шпак</h4>
             </div>
             <div class="col ptbutton">
-                <button type="button" class="btn btn-outline-info w-100 pt-2 pb-2">Редактировать</button>
-                <button type="button" class="btn btn-outline-danger w-100 pt-2 pb-2 mt-2 mb-2">Отменить прием</button>
+                <div class="pb-3">
+                    <table>
+                        <tr>
+                            <th>Дата приема:</th>
+                            <td>16/06/2020</td>
+                        </tr>
+                        <tr>
+                            <th>Время приема:</th>
+                            <td>14:00</td>
+                        </tr>
+                    </table>
+                </div>
+                <button type="button" class="btn btn-outline-secondary w-100 pt-2 pb-2">Редактировать</button>
+                <button type="button" class="btn btn-outline-info w-100 pt-2 pb-2 mt-2 mb-2" id="test">Подтвердить прием</button>
                 <button type="button" class="btn btn-outline-warning w-100 pt-2 pb-2">Добавить анализы</button>
             </div>
         </div>
@@ -38,5 +50,13 @@
 
 <style>
     .card { flex-direction: initial; }
-    .ptbutton { padding-top: 80px; }
+    .ptbutton { padding-top: 40px; }
 </style>
+
+<script>
+    $("#test").click(function () {
+        var isAdmin = confirm("Подтвердить запись?");
+        $("#test").toggleClass("btn btn-outline-info btn btn-outline-secondary");
+        $("#test").html('Отменить прием');
+    });
+</script>

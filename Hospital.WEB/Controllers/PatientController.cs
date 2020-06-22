@@ -15,14 +15,6 @@ namespace Hospital.WEB.Controllers
             _mapper = mapper;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Settings() { return NoContent(); }
-
         public IActionResult GetActiveReceptions() { return NoContent(); }
-
     }
 }

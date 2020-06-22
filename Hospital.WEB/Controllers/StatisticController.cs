@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hospital.WEB.Controllers
 {
+    [Route("statistic")]
+    [Authorize(Roles = "doctor, admin")]
     public class StatisticController : Controller
     {
         public IActionResult Index()
@@ -13,7 +16,10 @@ namespace Hospital.WEB.Controllers
             return View();
         }
 
+        [Route("doctor")]
         public IActionResult GetStatisticForDoctor() { return null; }
-        public IActionResult GetStatisticForAdmin() { return null; }
+
+        [Route("admin")]
+        public IActionResult GetStatisticForAdmin() { return View(); }
     }
 }
